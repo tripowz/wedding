@@ -395,3 +395,26 @@ button, a, .pill, .stepper__btn, .seal { touch-action: manipulation; }
 @media (prefers-reduced-motion: reduce) { .swipe.is-on, .swipe__chev { animation: none; } }
 
 .scroll-cue { display: none; }   /* заменена кнопкой «листайте вниз» */
+
+/* ---------- мягкий свет под заголовками: ленты не спорят с текстом ---------- */
+.sec { position: relative; isolation: isolate; }
+.sec::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  left: 50%; top: 24px; width: min(118vw, 640px); height: 300px; transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(250, 242, 234, .92), rgba(250, 242, 234, .6) 55%, rgba(250, 242, 234, 0));
+}
+
+/* ---------- лёгкая вуаль под верхней панелью, когда страница прокручена ---------- */
+.topbar::before {
+  content: ""; position: fixed; z-index: -1; left: 0; right: 0; top: 0; pointer-events: none;
+  height: calc(max(12px, env(safe-area-inset-top)) + 76px);
+  background: linear-gradient(rgba(240, 228, 218, .94), rgba(240, 228, 218, .7) 55%, rgba(240, 228, 218, 0));
+  opacity: 0; transition: opacity .6s var(--ease);
+}
+body.is-scrolled .topbar::before { opacity: 1; }
+
+/* подсказка всегда в одну строку; на низких экранах — компактнее, чтобы меньше закрывать открытку */
+.swipe { white-space: nowrap; width: max-content; }
+@media (max-height: 640px) {
+  .swipe { bottom: calc(10px + env(safe-area-inset-bottom)); gap: 8px; padding: 9px 15px 8px 17px; font-size: 11px; letter-spacing: .18em; }
+}

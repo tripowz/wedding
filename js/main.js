@@ -340,7 +340,10 @@
   let swipeDone = false;
   function hideSwipe() { swipeDone = true; swipe.classList.remove("is-on"); }
   function showSwipe() { if (!swipeDone && scrollY < 80) swipe.classList.add("is-on"); }
-  addEventListener("scroll", () => { if (!introOn && scrollY > 80) hideSwipe(); }, { passive: true });
+  addEventListener("scroll", () => {
+    if (!introOn && scrollY > 80) hideSwipe();
+    document.body.classList.toggle("is-scrolled", !introOn && scrollY > 40);
+  }, { passive: true });
   swipe.addEventListener("click", () => { hideSwipe(); $("#countdown").scrollIntoView({ behavior: "smooth", block: "start" }); });
 
   $("#seal").addEventListener("click", openEnvelope);
