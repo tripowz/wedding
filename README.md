@@ -57,3 +57,11 @@ python -m http.server 5500
 ## Что поменять потом
 - Тексты, программу, правила — `js/config.js`.
 - Фото: дизайн рассчитан без фото; когда будут свои снимки, добавим блок-галерею в том же стиле.
+
+## Автообновление (GitHub → Vercel)
+Репозиторий https://github.com/tripowz/wedding подключён к двум проектам Vercel:
+- `bf-wedding` (корень репозитория) → https://bekzod-ferangiz.vercel.app
+- `bf-fotiha` (папка `fotiha/`) → https://bekzod-ferangiz-fotiha.vercel.app
+
+Любой `git push` в ветку `main` публикует изменения сам. Каждый сайт пересобирается только когда меняются его файлы
+(правки в `video/`, `_archive/` и `.md` сайты не трогают).
