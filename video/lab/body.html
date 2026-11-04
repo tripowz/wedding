@@ -1,0 +1,97 @@
+<div id="stage" data-composition-id="main" data-start="0" data-duration="47" data-width="1080" data-height="1920">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0.35">
+        <stop offset="0" stop-color="#8a6330"/><stop offset="0.22" stop-color="#d4b06c"/><stop offset="0.38" stop-color="#f3e0aa"/>
+        <stop offset="0.55" stop-color="#b48a48"/><stop offset="0.74" stop-color="#e6cb90"/><stop offset="1" stop-color="#94692f"/>
+      </linearGradient>
+      <linearGradient id="goldV" x1="0" y1="0" x2="0.2" y2="1">
+        <stop offset="0" stop-color="#e9d09a"/><stop offset="0.35" stop-color="#b48a48"/><stop offset="0.6" stop-color="#f1dca4"/><stop offset="1" stop-color="#9a7035"/>
+      </linearGradient>
+      <g id="ornA">
+        <path d="M150,14 C157,28 157,40 150,52 C143,40 143,28 150,14 Z" fill="url(#gold)"/>
+        <circle cx="150" cy="6" r="2.2" fill="url(#gold)"/><circle cx="150" cy="61" r="2.6" fill="url(#gold)"/>
+        <g id="ornHalf" fill="none" stroke="url(#gold)" stroke-linecap="round">
+          <path d="M156,44 C172,52 188,44 183,34 C179,26 167,28 170,36" stroke-width="1.7"/>
+          <path d="M159,53 C190,64 222,44 253,48 C272,51 278,39 267,34 C258,31 251,40 259,44" stroke-width="1.6"/>
+          <path d="M176,62 C200,71 232,67 250,59" stroke-width="1.1"/>
+          <circle cx="214" cy="51" r="1.7" fill="url(#gold)" stroke="none"/><circle cx="284" cy="46" r="1.5" fill="url(#gold)" stroke="none"/>
+        </g>
+        <use href="#ornHalf" transform="translate(300,0) scale(-1,1)"/>
+      </g>
+      <g id="divA">
+        <path d="M18,12 H138 M182,12 H302" stroke="url(#gold)" stroke-width="1.2" fill="none"/>
+        <path d="M160,3 L167,12 L160,21 L153,12 Z" fill="url(#gold)"/>
+        <circle cx="145" cy="12" r="1.9" fill="url(#gold)"/><circle cx="175" cy="12" r="1.9" fill="url(#gold)"/>
+      </g>
+    </defs>
+  </svg>
+
+  <div id="world">
+    <canvas id="silk" width="1400" height="2240" data-layout-ignore></canvas>
+    <canvas id="ribBack" class="rib" width="1920" height="3180" data-layout-ignore data-layout-allow-occlusion></canvas>
+    <canvas id="envBack" class="env" data-layout-ignore></canvas>
+    <div id="flapWrap" class="env">
+      <div id="flap">
+        <div id="faceOut" class="face">
+          <canvas id="flapOut" data-layout-ignore></canvas>
+          <div id="shadeOut" class="fshade"></div>
+          <canvas id="seal" data-layout-ignore></canvas>
+        </div>
+        <div id="faceIn" class="face">
+          <canvas id="flapIn" data-layout-ignore></canvas>
+          <div id="shadeIn" class="fshade"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="card">
+      <canvas id="cardPaper" data-layout-ignore></canvas>
+      <svg id="frame" viewBox="0 0 780 1480" width="780" height="1480">
+        <path d="M1.6,1480 L1.6,390 A388.4,388.4 0 0 1 778.4,390 L778.4,1480" fill="none" stroke="url(#goldV)" stroke-width="3.2"/>
+        <g fill="none" stroke="url(#goldV)">
+          <path class="draw" d="M390,30 A360,360 0 0 0 30,390 L30,1480" stroke-width="1.6" pathLength="1"/>
+          <path class="draw" d="M390,30 A360,360 0 0 1 750,390 L750,1480" stroke-width="1.6" pathLength="1"/>
+          <path class="draw" d="M390,40 A350,350 0 0 0 40,390 L40,1480" stroke-width="0.8" pathLength="1"/>
+          <path class="draw" d="M390,40 A350,350 0 0 1 740,390 L740,1480" stroke-width="0.8" pathLength="1"/>
+        </g>
+      </svg>
+      <svg id="orn1" class="rvc" viewBox="0 0 300 72" width="300" height="72"><use href="#ornA"/></svg>
+      <div id="tBless" class="ln caps cocoa rv"></div>
+      <div id="tGroom" class="ln script bur rvs"></div>
+      <div id="tAmp" class="ln script gold rvs"></div>
+      <div id="tBride" class="ln script bur rvs"></div>
+      <svg id="div1" class="rvc" viewBox="0 0 320 24" width="320" height="24"><use href="#divA"/></svg>
+      <div id="tInv1" class="ln caps burT rv"></div>
+      <div id="tInv2" class="ln caps burT rv"></div>
+      <div id="vL" class="vr"></div><div id="vR" class="vr"></div>
+      <div id="dLeft" class="col caps cocoa rv"></div>
+      <div id="dMonth" class="col caps gold rv"></div>
+      <div id="dDay" class="col caps bur rvc"></div>
+      <div id="dYear" class="col caps gold rv"></div>
+      <div id="dT1" class="col caps cocoa rv"></div>
+      <div id="dT2" class="col caps bur rv"></div>
+      <svg id="orn2" class="rvc" viewBox="0 0 300 72" width="240" height="58"><use href="#ornA"/></svg>
+      <div id="tVenue" class="ln caps bur rv"></div>
+      <div id="tVenue2" class="ln ital cocoa rv"></div>
+      <div id="tHosts1" class="ln script cocoaS rvs"></div>
+      <div id="tHosts2" class="ln script bur rvs"></div>
+      <div id="cardSheen"></div>
+    </div>
+
+    <canvas id="pocket" class="env" data-layout-ignore data-layout-allow-occlusion></canvas>
+    <canvas id="sprigL" class="sprig" data-layout-ignore data-layout-allow-occlusion></canvas>
+    <canvas id="sprigR" class="sprig" data-layout-ignore data-layout-allow-occlusion></canvas>
+  </div>
+
+  <div id="fg">
+    <canvas id="ribFront" class="rib" width="1920" height="3180" data-layout-ignore data-layout-allow-occlusion></canvas>
+    <canvas id="dust" width="1080" height="1920" data-layout-ignore data-layout-allow-occlusion></canvas>
+  </div>
+  <div id="sweep" data-layout-ignore></div>
+  <div id="vignette" data-layout-ignore></div>
+  <canvas id="grain" width="540" height="960" data-layout-ignore></canvas>
+
+  <audio id="music" class="clip" src="assets/music.mp3" data-start="0" data-duration="47" data-media-start="8.5"
+    data-track-index="1" data-volume="1" data-fade-in="0.12" data-fade-out="2.2"></audio>
+</div>

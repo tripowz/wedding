@@ -1,0 +1,12 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#000}#w{position:relative;width:1080px;height:1920px;overflow:hidden}
+canvas{position:absolute}#bg{left:-160px;top:-160px;width:1400px;height:2240px}
+.rb{left:-100px;top:-100px;width:1280px;height:2120px;filter:drop-shadow(0 22px 26px rgba(70,25,25,.30)) drop-shadow(0 4px 6px rgba(70,25,25,.18))}
+#card{position:absolute;left:150px;top:170px;width:780px;height:1480px;background:#fbf6ef;border-radius:390px 390px 14px 14px;box-shadow:0 30px 60px rgba(70,30,30,.22),0 6px 14px rgba(70,30,30,.16)}</style></head><body><div id="w">
+<canvas id="bg" width="1400" height="2240"></canvas><canvas id="rb" class="rb" width="1920" height="3180"></canvas><div id="card"></div><canvas id="rf" class="rb" width="1920" height="3180"></canvas></div>
+<script src="../assets/satin.js"></script><script src="ribbons.js"></script>
+<script>
+const t=+(new URLSearchParams(location.search).get('t')||0);
+Satin.Silk(document.getElementById('bg'),[-160,-160,1400,2240],{lo:[0.80,0.68,0.61],mid:[0.93,0.86,0.80],hi:[1.0,0.975,0.95]})(t);
+Satin.Ribbons(document.getElementById('rb'),[-100,-100,1280,2120],RIB.back)(t);
+Satin.Ribbons(document.getElementById('rf'),[-100,-100,1280,2120],RIB.front)(t);
+</script></body></html>

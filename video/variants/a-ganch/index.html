@@ -1,0 +1,630 @@
+<!doctype html>
+<html
+  lang="uz"
+  data-resolution="portrait"
+  data-composition-variables='[
+    {"id":"initials","type":"string","label":"Инициалы на медальоне","default":"B & F"},
+    {"id":"kicker","type":"string","label":"Подпись под медальоном","default":"NIKOH TO‘YI"},
+    {"id":"groom","type":"string","label":"Жених","default":"Bekzod"},
+    {"id":"bride","type":"string","label":"Невеста","default":"Ferangiz"},
+    {"id":"invite1","type":"string","label":"Приглашение, строка 1","default":"Sizni hayotimizdagi"},
+    {"id":"invite2","type":"string","label":"Приглашение, строка 2","default":"eng baxtli kunimizga"},
+    {"id":"invite3","type":"string","label":"Приглашение, строка 3","default":"taklif qilamiz"},
+    {"id":"day","type":"string","label":"Число","default":"11"},
+    {"id":"month","type":"string","label":"Месяц и год","default":"NOYABR 2026"},
+    {"id":"when","type":"string","label":"День недели и время","default":"Chorshanba · soat 18:00"},
+    {"id":"venue","type":"string","label":"Место","default":"Sofinur Hall"},
+    {"id":"venue2","type":"string","label":"Тип места и город","default":"to‘yxonasi · Buxoro"},
+    {"id":"hosts1","type":"string","label":"Подпись, строка 1","default":"Hurmat bilan,"},
+    {"id":"hosts2","type":"string","label":"Подпись, строка 2","default":"Sharipovlar oilasi"},
+    {"id":"closing","type":"string","label":"Финальная строка","default":"Sizni kutib qolamiz"}
+  ]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 400; font-display: block; src: url('assets/fonts/co3ZmX5slCNuHLi8bLeY9MK7whWMhyjYrEtFmSq17w.woff2') format('woff2'); unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 400; font-display: block; src: url('assets/fonts/co3ZmX5slCNuHLi8bLeY9MK7whWMhyjYrEtMmSq17w.woff2') format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 400; font-display: block; src: url('assets/fonts/co3ZmX5slCNuHLi8bLeY9MK7whWMhyjYrEtGmSq17w.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 400; font-display: block; src: url('assets/fonts/co3ZmX5slCNuHLi8bLeY9MK7whWMhyjYrEtImSo.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 500; font-display: block; src: url('assets/fonts/co3ZmX5slCNuHLi8bLeY9MK7whWMhyjYrEtFmSq17w.woff2') format('woff2'); unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 500; font-display: block; src: url('assets/fonts/co3ZmX5slCNuHLi8bLeY9MK7whWMhyjYrEtMmSq17w.woff2') format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 500; font-display: block; src: url('assets/fonts/co3ZmX5slCNuHLi8bLeY9MK7whWMhyjYrEtGmSq17w.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 500; font-display: block; src: url('assets/fonts/co3ZmX5slCNuHLi8bLeY9MK7whWMhyjYrEtImSo.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYpHtKgS4.woff2') format('woff2'); unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYrXtKgS4.woff2') format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYp3tKgS4.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtK.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYpHtKgS4.woff2') format('woff2'); unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYrXtKgS4.woff2') format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYp3tKgS4.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtK.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYpHtKgS4.woff2') format('woff2'); unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYrXtKgS4.woff2') format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYp3tKgS4.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtK.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/xn7gYHE41ni1AdIRggqxSuXd.woff2') format('woff2'); unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/xn7gYHE41ni1AdIRggOxSuXd.woff2') format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/xn7gYHE41ni1AdIRggmxSuXd.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/xn7gYHE41ni1AdIRggexSg.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/xn7gYHE41ni1AdIRggqxSuXd.woff2') format('woff2'); unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/xn7gYHE41ni1AdIRggOxSuXd.woff2') format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/xn7gYHE41ni1AdIRggmxSuXd.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/xn7gYHE41ni1AdIRggexSg.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/xn7gYHE41ni1AdIRggqxSuXd.woff2') format('woff2'); unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/xn7gYHE41ni1AdIRggOxSuXd.woff2') format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/xn7gYHE41ni1AdIRggmxSuXd.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/xn7gYHE41ni1AdIRggexSg.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+      :root {
+        --plaster: #f3eee3;
+        --khaki: #8a8458;
+        --khaki-deep: #5e5a3a;
+        --sun: #fff3df;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--plaster);
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: var(--plaster);
+      }
+      #wall {
+        position: absolute;
+        inset: 0;
+        width: 1080px;
+        height: 1920px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="47"
+      data-width="1080"
+      data-height="1920"
+    >
+      <canvas id="wall" width="1080" height="1920"></canvas>
+
+      <audio
+        id="music"
+        class="clip"
+        src="assets/music.mp3"
+        data-start="0"
+        data-duration="47"
+        data-media-start="8.5"
+        data-track-index="1"
+        data-volume="1"
+        data-fade-in="0.12"
+        data-fade-out="2.2"
+      ></audio>
+    </div>
+
+    <script>
+      (() => {
+        /* ============================================================
+           Мир: стена-пиштак 2160 × 7200 px. Камера смотрит в окно 1080 × 1920.
+           Высота рельефа рисуется в 2D-канвасе в оттенках серого (0 — глубоко, 1 — высоко).
+           ============================================================ */
+        const WW = 2160, WH = 7400, CX = WW / 2;
+        const OUT_W = 1080, OUT_H = 1920;
+
+        // Станции камеры (центр кадра в мире)
+        const ST = {
+          medal: 1000,
+          names: 2150,
+          invite: 3150,
+          date: 4150,
+          venue: 5520,
+          hosts: 6250,
+        };
+
+        // Уровни высоты
+        const LV = {
+          field: 0.55,   // общий фон стены
+          groove: 0.38,  // канавки гириха
+          shelf: 0.64,   // гладкая полка картуша
+          bead: 0.8,     // бусинный бортик
+          carve: 0.34,   // вырезанный текст
+          niche: 0.46,   // дно ниши
+        };
+
+        const gray = (v) => {
+          const c = Math.round(Math.max(0, Math.min(1, v)) * 255);
+          return `rgb(${c},${c},${c})`;
+        };
+
+        // Детерминированный генератор
+        function mulberry32(a) {
+          return function () {
+            a |= 0; a = (a + 0x6d2b79f5) | 0;
+            let t = Math.imul(a ^ (a >>> 15), 1 | a);
+            t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+            return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+          };
+        }
+
+        function starPath(ctx, x, y, n, R, r, rot = -Math.PI / 2) {
+          ctx.beginPath();
+          for (let i = 0; i < n * 2; i++) {
+            const a = rot + (Math.PI / n) * i;
+            const rr = i % 2 ? r : R;
+            const px = x + Math.cos(a) * rr, py = y + Math.sin(a) * rr;
+            i ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
+          }
+          ctx.closePath();
+        }
+
+        function roundRect(ctx, x, y, w, h, r) {
+          ctx.beginPath();
+          ctx.moveTo(x + r, y);
+          ctx.arcTo(x + w, y, x + w, y + h, r);
+          ctx.arcTo(x + w, y + h, x, y + h, r);
+          ctx.arcTo(x, y + h, x, y, r);
+          ctx.arcTo(x, y, x + w, y, r);
+          ctx.closePath();
+        }
+
+        // Стрельчатая арка (четырёхцентровая, как в бухарских порталах)
+        function archPath(ctx, x0, x1, ySpring, yApex, yBottom) {
+          const w = x1 - x0, cx = (x0 + x1) / 2;
+          ctx.beginPath();
+          ctx.moveTo(x0, yBottom);
+          ctx.lineTo(x0, ySpring);
+          ctx.bezierCurveTo(x0, ySpring - (ySpring - yApex) * 0.55, cx - w * 0.18, yApex + (ySpring - yApex) * 0.12, cx, yApex);
+          ctx.bezierCurveTo(cx + w * 0.18, yApex + (ySpring - yApex) * 0.12, x1, ySpring - (ySpring - yApex) * 0.55, x1, ySpring);
+          ctx.lineTo(x1, yBottom);
+          ctx.closePath();
+        }
+
+        // Картуш: полка + бусина + тонкая канавка внутри
+        function cartouche(ctx, x, y, w, h, r, shape = "rect") {
+          const path = (inset) => {
+            if (shape === "arch") archPath(ctx, x + inset, x + w - inset, y + h * 0.3, y + inset, y + h - inset);
+            else roundRect(ctx, x + inset, y + inset, w - inset * 2, h - inset * 2, Math.max(4, r - inset));
+          };
+          path(0); ctx.fillStyle = gray(LV.bead); ctx.fill();
+          path(14); ctx.fillStyle = gray(LV.shelf - 0.06); ctx.fill();
+          path(20); ctx.fillStyle = gray(LV.shelf); ctx.fill();
+          path(38); ctx.lineWidth = 3; ctx.strokeStyle = gray(LV.shelf - 0.16); ctx.stroke();
+        }
+
+        function carveText(ctx, text, x, y, font, level, tracking = 0) {
+          ctx.font = font;
+          ctx.fillStyle = gray(level);
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          if (!tracking) { ctx.fillText(text, x, y); return; }
+          // Трекинг для капсов
+          const chars = Array.from(text);
+          const widths = chars.map((c) => ctx.measureText(c).width);
+          const total = widths.reduce((a, b) => a + b, 0) + tracking * (chars.length - 1);
+          let cx = x - total / 2;
+          ctx.textAlign = "left";
+          chars.forEach((c, i) => { ctx.fillText(c, cx, y); cx += widths[i] + tracking; });
+        }
+
+        function fitFont(ctx, text, weight, family, size, maxW) {
+          let s = size;
+          ctx.font = `${weight} ${s}px "${family}"`;
+          while (ctx.measureText(text).width > maxW && s > 20) { s -= 2; ctx.font = `${weight} ${s}px "${family}"`; }
+          return `${weight} ${s}px "${family}"`;
+        }
+
+        function buildHeightMap(V) {
+          const cv = document.createElement("canvas");
+          cv.width = WW; cv.height = WH;
+          const ctx = cv.getContext("2d");
+          const rnd = mulberry32(20261111);
+
+          // 1. Фон стены
+          ctx.fillStyle = gray(LV.field);
+          ctx.fillRect(0, 0, WW, WH);
+
+          // 2. Гирих-паркет: 8-конечные звёзды на сетке 120 px, канавками
+          const S = 120;
+          ctx.lineJoin = "round";
+          for (let gy = -S; gy < WH + S; gy += S) {
+            for (let gx = -S; gx < WW + S; gx += S) {
+              const x = gx + S / 2, y = gy + S / 2;
+              ctx.lineWidth = 6;
+              ctx.strokeStyle = gray(LV.groove);
+              starPath(ctx, x, y, 8, S * 0.44, S * 0.3, -Math.PI / 2 + Math.PI / 8);
+              ctx.stroke();
+              ctx.beginPath(); ctx.arc(x, y, S * 0.12, 0, Math.PI * 2);
+              ctx.fillStyle = gray(LV.groove + 0.05); ctx.fill();
+              // крестовины в углах ячейки
+              ctx.lineWidth = 5;
+              ctx.beginPath();
+              ctx.moveTo(gx - 10, gy); ctx.lineTo(gx + 10, gy);
+              ctx.moveTo(gx, gy - 10); ctx.lineTo(gx, gy + 10);
+              ctx.stroke();
+            }
+          }
+
+          // 3. Обрамление фасада: две бусины по периметру
+          ctx.lineWidth = 34; ctx.strokeStyle = gray(LV.bead);
+          ctx.strokeRect(70, 70, WW - 140, WH - 140);
+          ctx.lineWidth = 14; ctx.strokeStyle = gray(LV.shelf);
+          ctx.strokeRect(130, 130, WW - 260, WH - 260);
+          // гладкая вертикальная полоса-«колонна» по центру за надписями
+          ctx.fillStyle = gray(LV.field + 0.03);
+          ctx.fillRect(CX - 560, 140, 1120, WH - 280);
+          ctx.lineWidth = 10; ctx.strokeStyle = gray(LV.bead - 0.05);
+          ctx.strokeRect(CX - 560, 140, 1120, WH - 280);
+          // мелкий гирих внутри колонны, поменьше и мельче
+          ctx.save();
+          ctx.beginPath(); ctx.rect(CX - 550, 150, 1100, WH - 300); ctx.clip();
+          for (let gy = 150; gy < WH; gy += 80) {
+            for (let gx = CX - 550; gx < CX + 560; gx += 80) {
+              ctx.lineWidth = 3; ctx.strokeStyle = gray(LV.field - 0.08);
+              starPath(ctx, gx + 40, gy + 40, 8, 26, 17, -Math.PI / 2 + Math.PI / 8);
+              ctx.stroke();
+            }
+          }
+          ctx.restore();
+
+          /* ---------- Станция 1: медальон ---------- */
+          const my = ST.medal;
+          ctx.beginPath(); ctx.arc(CX, my, 470, 0, Math.PI * 2);
+          ctx.fillStyle = gray(LV.field + 0.02); ctx.fill();
+          ctx.lineWidth = 16; ctx.strokeStyle = gray(LV.bead); ctx.stroke();
+          ctx.beginPath(); ctx.arc(CX, my, 440, 0, Math.PI * 2);
+          ctx.lineWidth = 4; ctx.strokeStyle = gray(LV.groove); ctx.stroke();
+          // 16-конечная звезда, двойная обводка
+          starPath(ctx, CX, my, 16, 425, 350);
+          ctx.fillStyle = gray(LV.shelf - 0.03); ctx.fill();
+          ctx.lineWidth = 10; ctx.strokeStyle = gray(LV.bead - 0.04); ctx.stroke();
+          starPath(ctx, CX, my, 16, 395, 330);
+          ctx.lineWidth = 3; ctx.strokeStyle = gray(LV.groove + 0.04); ctx.stroke();
+          // лепестки между лучами
+          for (let i = 0; i < 16; i++) {
+            const a = (i / 16) * Math.PI * 2 - Math.PI / 2;
+            const px = CX + Math.cos(a) * 300, py = my + Math.sin(a) * 300;
+            ctx.save(); ctx.translate(px, py); ctx.rotate(a);
+            ctx.beginPath(); ctx.ellipse(0, 0, 52, 17, 0, 0, Math.PI * 2);
+            ctx.fillStyle = gray(LV.groove); ctx.fill();
+            ctx.beginPath(); ctx.ellipse(0, 0, 40, 9, 0, 0, Math.PI * 2);
+            ctx.fillStyle = gray(LV.bead - 0.1); ctx.fill();
+            ctx.restore();
+          }
+          // восьмиконечная звезда и центральный диск
+          ctx.lineWidth = 6; ctx.strokeStyle = gray(LV.groove);
+          starPath(ctx, CX, my, 8, 250, 205, -Math.PI / 2 + Math.PI / 8); ctx.stroke();
+          ctx.beginPath(); ctx.arc(CX, my, 200, 0, Math.PI * 2);
+          ctx.fillStyle = gray(LV.bead); ctx.fill();
+          ctx.beginPath(); ctx.arc(CX, my, 186, 0, Math.PI * 2);
+          ctx.fillStyle = gray(LV.shelf + 0.02); ctx.fill();
+          ctx.beginPath(); ctx.arc(CX, my, 168, 0, Math.PI * 2);
+          ctx.lineWidth = 3; ctx.strokeStyle = gray(LV.shelf - 0.16); ctx.stroke();
+          carveText(ctx, V.initials, CX, my + 6, fitFont(ctx, V.initials, 500, "Cormorant Garamond", 150, 300), LV.carve);
+          // подпись под медальоном на ленте
+          cartouche(ctx, CX - 330, my + 520, 660, 120, 60);
+          carveText(ctx, V.kicker, CX, my + 582, `600 40px "Manrope"`, LV.carve, 14);
+
+          /* ---------- Станция 2: имена ---------- */
+          cartouche(ctx, CX - 470, ST.names - 420, 940, 840, 40);
+          const nameFont = (t) => fitFont(ctx, t, 500, "Cormorant Garamond", 190, 800);
+          carveText(ctx, V.groom, CX, ST.names - 210, nameFont(V.groom), LV.carve);
+          carveText(ctx, "&", CX, ST.names + 10, `400 120px "Cormorant Garamond"`, LV.carve);
+          carveText(ctx, V.bride, CX, ST.names + 225, nameFont(V.bride), LV.carve);
+          // ромбы-разделители
+          [-1, 1].forEach((s) => {
+            ctx.save(); ctx.translate(CX + s * 150, ST.names + 16); ctx.rotate(Math.PI / 4);
+            ctx.fillStyle = gray(LV.carve + 0.06); ctx.fillRect(-9, -9, 18, 18); ctx.restore();
+          });
+
+          /* ---------- Станция 3: приглашение ---------- */
+          cartouche(ctx, CX - 470, ST.invite - 330, 940, 660, 40);
+          const invF = (t) => fitFont(ctx, t, 500, "Cormorant Garamond", 76, 800);
+          carveText(ctx, V.invite1, CX, ST.invite - 110, invF(V.invite1), LV.carve);
+          carveText(ctx, V.invite2, CX, ST.invite, invF(V.invite2), LV.carve);
+          carveText(ctx, V.invite3, CX, ST.invite + 110, invF(V.invite3), LV.carve);
+          starPath(ctx, CX, ST.invite - 230, 8, 22, 10, -Math.PI / 2 + Math.PI / 8);
+          ctx.fillStyle = gray(LV.carve + 0.04); ctx.fill();
+          starPath(ctx, CX, ST.invite + 230, 8, 22, 10, -Math.PI / 2 + Math.PI / 8);
+          ctx.fill();
+
+          /* ---------- Станция 4: дата (стрельчатый картуш) ---------- */
+          cartouche(ctx, CX - 470, ST.date - 560, 940, 1020, 40, "arch");
+          carveText(ctx, V.day, CX, ST.date - 80, `200 330px "Manrope"`, LV.carve, -18);
+          carveText(ctx, V.month, CX, ST.date + 175, `600 46px "Manrope"`, LV.carve, 16);
+          ctx.fillStyle = gray(LV.carve + 0.08);
+          ctx.fillRect(CX - 120, ST.date + 236, 240, 4);
+          carveText(ctx, V.when, CX, ST.date + 300, fitFont(ctx, V.when, 500, "Cormorant Garamond", 66, 800), LV.carve);
+
+          /* ---------- Станция 5: портал-арка ---------- */
+          const ax0 = CX - 590, ax1 = CX + 590, aSpring = 5260, aApex = 4830, aBottom = 7160;
+          // ступенчатые уступы обрамления
+          [[-150, LV.bead], [-120, LV.shelf], [-80, LV.bead - 0.04], [-56, LV.shelf - 0.04], [-24, LV.bead]].forEach(([o, v]) => {
+            archPath(ctx, ax0 + o, ax1 - o, aSpring, aApex + o * 1.15, aBottom);
+            ctx.fillStyle = gray(v); ctx.fill();
+          });
+          // канавка-«верёвка» на внешнем уступе
+          archPath(ctx, ax0 - 136, ax1 + 136, aSpring, aApex - 156, aBottom);
+          ctx.setLineDash([16, 12]); ctx.lineWidth = 6; ctx.strokeStyle = gray(LV.groove + 0.1); ctx.stroke(); ctx.setLineDash([]);
+          // ниша
+          archPath(ctx, ax0, ax1, aSpring, aApex, aBottom);
+          ctx.fillStyle = gray(LV.niche); ctx.fill();
+          // мукарнас: ряды маленьких арочек под сводом
+          ctx.save();
+          archPath(ctx, ax0, ax1, aSpring, aApex, aBottom); ctx.clip();
+          for (let row = 0; row < 4; row++) {
+            const y = aApex + 60 + row * 95;
+            const n = 3 + row * 2, w = (ax1 - ax0) / n;
+            for (let i = 0; i < n; i++) {
+              const x0 = ax0 + i * w + 8, x1 = ax0 + (i + 1) * w - 8;
+              archPath(ctx, x0, x1, y + 50, y, y + 90);
+              ctx.fillStyle = gray(LV.niche + 0.12 - row * 0.02); ctx.fill();
+              ctx.lineWidth = 3; ctx.strokeStyle = gray(LV.niche - 0.06); ctx.stroke();
+            }
+          }
+          ctx.restore();
+          // доска с названием площадки внутри ниши
+          cartouche(ctx, CX - 470, ST.venue - 230, 940, 440, 30);
+          carveText(ctx, V.venue, CX, ST.venue - 40, fitFont(ctx, V.venue, 500, "Cormorant Garamond", 128, 700), LV.carve);
+          carveText(ctx, V.venue2, CX, ST.venue + 95, fitFont(ctx, V.venue2, 500, "Cormorant Garamond", 60, 680), LV.carve);
+          // доска с подписью семьи и финальной строкой
+          cartouche(ctx, CX - 470, ST.hosts - 300, 940, 680, 30);
+          carveText(ctx, V.hosts1, CX, ST.hosts - 180, fitFont(ctx, V.hosts1, 400, "Cormorant Garamond", 62, 680), LV.carve);
+          carveText(ctx, V.hosts2, CX, ST.hosts - 100, fitFont(ctx, V.hosts2, 500, "Cormorant Garamond", 70, 680), LV.carve);
+          starPath(ctx, CX, ST.hosts + 10, 8, 20, 9, -Math.PI / 2 + Math.PI / 8);
+          ctx.fillStyle = gray(LV.carve + 0.04); ctx.fill();
+          carveText(ctx, V.closing, CX, ST.hosts + 150, fitFont(ctx, V.closing, 500, "Cormorant Garamond", 96, 690), LV.carve);
+          // порог
+          ctx.fillStyle = gray(LV.bead);
+          ctx.fillRect(ax0 - 160, aBottom - 40, (ax1 - ax0) + 320, 40);
+
+          // 4. Фаска: смягчаем все края
+          const soft = document.createElement("canvas");
+          soft.width = WW; soft.height = WH;
+          const sctx = soft.getContext("2d");
+          sctx.filter = "blur(2.2px)";
+          sctx.drawImage(cv, 0, 0);
+          return soft;
+        }
+
+        /* ============================================================
+           WebGL2: освещение рельефа
+           ============================================================ */
+        const canvas = document.getElementById("wall");
+        const gl = canvas.getContext("webgl2", { preserveDrawingBuffer: true, antialias: false, premultipliedAlpha: false });
+
+        const VS = `#version 300 es
+        in vec2 p; void main(){ gl_Position = vec4(p,0.,1.); }`;
+
+        const FS = `#version 300 es
+        precision highp float;
+        uniform sampler2D uH;
+        uniform vec2 uWorld, uRes, uCam;
+        uniform float uZoom, uAz, uEl, uExpo, uFrame;
+        uniform float uFront;
+        out vec4 o;
+
+        const float DEPTH = 18.0;
+
+        float H(vec2 w, float lod){ return textureLod(uH, w / uWorld, lod).r; }
+
+        float hash(vec2 p){ p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }
+        float vnoise(vec2 p){
+          vec2 i = floor(p), f = fract(p); f = f*f*(3.-2.*f);
+          float a = hash(i), b = hash(i+vec2(1,0)), c = hash(i+vec2(0,1)), d = hash(i+vec2(1,1));
+          return mix(mix(a,b,f.x), mix(c,d,f.x), f.y);
+        }
+
+        void main(){
+          vec2 sc = vec2(gl_FragCoord.x, uRes.y - gl_FragCoord.y);
+          vec2 w = uCam + (sc - uRes * 0.5) / uZoom;
+          float px = 1.0 / uZoom;                 // мир-px на пиксель экрана
+          float lod = max(0.0, log2(px));
+
+          float h = H(w, lod);
+          float e = max(1.0, px);
+          float hx = H(w + vec2(e,0.), lod) - H(w - vec2(e,0.), lod);
+          float hy = H(w + vec2(0.,e), lod) - H(w - vec2(0.,e), lod);
+          vec3 N = normalize(vec3(-hx * DEPTH / (2.*e), -hy * DEPTH / (2.*e), 1.0));
+
+          // солнце (y мира направлен вниз)
+          vec3 L = normalize(vec3(cos(uAz) * cos(uEl), sin(uAz) * cos(uEl), sin(uEl)));
+          float diff = max(dot(N, L), 0.0);
+
+          // падающие тени: ray-march по карте высот
+          vec2 dir = normalize(L.xy);
+          float slope = L.z / length(L.xy);
+          float h0 = h * DEPTH;
+          float shadow = 1.0;
+          float stepPx = 2.6 * max(1.0, px);
+          for (int i = 1; i <= 20; i++) {
+            float s = float(i) * stepPx;
+            float rayH = h0 + s * slope;
+            float occ = H(w + dir * s, lod) * DEPTH - rayH;
+            shadow = min(shadow, 1.0 - clamp(occ / (0.9 + s * 0.06), 0.0, 1.0));
+          }
+          shadow = clamp(shadow, 0.0, 1.0);
+
+          // AO: насколько точка ниже окрестности
+          float hb = H(w, lod + 4.0);
+          float ao = clamp((hb - h) * 3.2, 0.0, 1.0);
+
+          // альбедо штукатурки
+          vec3 plaster = vec3(0.953, 0.933, 0.890);
+          vec3 khaki = vec3(0.541, 0.518, 0.345);
+          float grainW = vnoise(w * 0.09) * 0.6 + vnoise(w * 0.37) * 0.4;
+          vec3 alb = plaster * (0.97 + grainW * 0.06);
+          alb = mix(alb, khaki, ao * 0.20);
+
+          // граница солнца: спускается по фасаду, слегка по диагонали
+          float wy = w.y + (w.x - uWorld.x * 0.5) * 0.32;
+          float sunM = smoothstep(uFront + 150.0, uFront - 150.0, wy);
+
+          // небесный свет сверху — мягкий, без резких теней
+          vec3 F = normalize(vec3(0.0, -0.55, 0.84));
+          float fill = max(dot(N, F), 0.0);
+          vec3 skyC = vec3(0.985, 0.975, 0.96);
+          vec3 sunC = vec3(1.0, 0.953, 0.875);
+
+          vec3 col = alb * skyC * 0.60 * (0.58 + 0.42 * fill) * (1.0 - ao * 0.5);
+          col += alb * sunC * 1.25 * diff * shadow * sunM * (1.0 - ao * 0.45);
+          col += pow(max(dot(reflect(-L, N), vec3(0, 0, 1)), 0.0), 18.0) * 0.05 * shadow * sunM;
+          col = col / (1.0 + col * 0.18) * 1.18;
+          col *= uExpo;
+
+          // виньетка и зерно
+          vec2 q = sc / uRes - 0.5;
+          col *= 1.0 - 0.09 * smoothstep(0.25, 0.85, length(q * vec2(1.0, 0.78)) * 1.4);
+          float g = hash(sc + uFrame * 17.13) - 0.5;
+          col += g * 0.02;
+          o = vec4(clamp(col, 0.0, 1.0), 1.0);
+        }`;
+
+        function compile(type, src) {
+          const s = gl.createShader(type);
+          gl.shaderSource(s, src); gl.compileShader(s);
+          if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s));
+          return s;
+        }
+        const prog = gl.createProgram();
+        gl.attachShader(prog, compile(gl.VERTEX_SHADER, VS));
+        gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FS));
+        gl.linkProgram(prog);
+        gl.useProgram(prog);
+        const buf = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+        const loc = gl.getAttribLocation(prog, "p");
+        gl.enableVertexAttribArray(loc);
+        gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+        const U = {};
+        ["uH", "uWorld", "uRes", "uCam", "uZoom", "uAz", "uEl", "uExpo", "uFrame", "uFront"].forEach(
+          (n) => (U[n] = gl.getUniformLocation(prog, n))
+        );
+
+        function uploadHeight(src) {
+          // В текстуру кладём только красный канал (R8) — экономно для 2160×7200
+          const tmp = src.getContext("2d").getImageData(0, 0, WW, WH).data;
+          const r8 = new Uint8Array(WW * WH);
+          for (let i = 0, j = 0; j < r8.length; i += 4, j++) r8[j] = tmp[i];
+          const tex = gl.createTexture();
+          gl.bindTexture(gl.TEXTURE_2D, tex);
+          gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1);
+          gl.texImage2D(gl.TEXTURE_2D, 0, gl.R8, WW, WH, 0, gl.RED, gl.UNSIGNED_BYTE, r8);
+          gl.generateMipmap(gl.TEXTURE_2D);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+          gl.uniform1i(U.uH, 0);
+        }
+
+        /* ============================================================
+           Камера и свет — всё функция времени
+           ============================================================ */
+        const S = {
+          camY: ST.medal, zoom: 1,
+          az: 205, el: 18, expo: 1.0,
+          front: 450,
+        };
+        const cam = gsap.timeline({ paused: true });
+        const DUR = 47;
+
+        // Свет: рассвет за весь фильм
+        cam.fromTo(S, { az: 205, el: 18 }, { az: 320, el: 34, duration: DUR, ease: "sine.inOut" }, 0);
+        cam.fromTo(S, { expo: 1.0 }, { expo: 1.02, duration: 4, ease: "sine.inOut" }, 41.5);
+
+        // Дрейф и переезды
+        const DRIFT = 14; // px/с
+        const legs = [
+          // [время прибытия, станция, начало переезда]
+          { from: 0, at: 0, y: ST.medal },
+          { from: 7.5, at: 9.1, y: ST.names },
+          { from: 15.5, at: 17.1, y: ST.invite },
+          { from: 23.0, at: 24.6, y: ST.date },
+        ];
+        legs.forEach((leg, i) => {
+          if (i > 0) cam.to(S, { camY: leg.y, duration: leg.at - leg.from, ease: "power2.inOut" }, leg.from);
+          const next = legs[i + 1];
+          const holdEnd = next ? next.from : 29.5;
+          cam.to(S, { camY: leg.y + DRIFT * (holdEnd - leg.at), duration: holdEnd - leg.at, ease: "none" }, leg.at);
+        });
+        // Отъезд — весь портал, затем наезд в арку
+        const revealY = 5250;
+        cam.to(S, { camY: revealY, zoom: 0.5, duration: 2.3, ease: "power3.inOut" }, 29.5);
+        cam.to(S, { camY: revealY + 10, duration: 0.8, ease: "none" }, 31.8);
+        cam.to(S, { camY: ST.venue, zoom: 1, duration: 2.2, ease: "power2.inOut" }, 32.6);
+        cam.to(S, { camY: ST.venue + DRIFT * 2.4, duration: 2.4, ease: "none" }, 34.8);
+        cam.to(S, { camY: ST.hosts, duration: 1.6, ease: "power2.inOut" }, 37.2);
+        cam.to(S, { camY: ST.hosts + 16, duration: 2.7, ease: "none" }, 38.8);
+        // Финал: медленный отъезд — подпись встаёт внутри арки
+        cam.to(S, { camY: 6215, zoom: 0.84, duration: 4.8, ease: "power2.inOut" }, 41.5);
+
+        // Солнце спускается по фасаду и «зажигает» каждую надпись, когда к ней приезжает камера
+        cam.set(S, { front: 450 }, 0);
+        [
+          [0.0, 2.2, 1800],
+          [9.3, 1.6, 2690],
+          [17.3, 1.5, 3560],
+          [24.8, 1.5, 4720],
+          [34.8, 1.5, 5820],
+          [39.0, 1.5, 6720],
+          [41.5, 3.5, 7800],
+        ].forEach(([t, d, y]) => cam.to(S, { front: y, duration: d, ease: "power1.inOut" }, t));
+
+        let ready = false;
+        function renderAt(t) {
+          if (!ready) return;
+          cam.seek(Math.max(0, Math.min(DUR, t)), true);
+          gl.viewport(0, 0, OUT_W, OUT_H);
+          gl.uniform2f(U.uWorld, WW, WH);
+          gl.uniform2f(U.uRes, OUT_W, OUT_H);
+          gl.uniform2f(U.uCam, CX, S.camY);
+          gl.uniform1f(U.uZoom, S.zoom);
+          gl.uniform1f(U.uAz, (S.az * Math.PI) / 180);
+          gl.uniform1f(U.uEl, (S.el * Math.PI) / 180);
+          gl.uniform1f(U.uExpo, S.expo);
+          gl.uniform1f(U.uFrame, Math.round(t * 30));
+          gl.uniform1f(U.uFront, S.front);
+          gl.drawArrays(gl.TRIANGLES, 0, 3);
+        }
+
+        window.addEventListener("hf-seek", (e) => renderAt(e.detail.time));
+
+        const fontsReady = Promise.all([
+          document.fonts.load('500 190px "Cormorant Garamond"', "BbАаЯя"),
+          document.fonts.load('400 120px "Cormorant Garamond"', "BbАаЯя"),
+          document.fonts.load('600 46px "Manrope"', "NOYABRНОЯБРЯ"),
+          document.fonts.load('200 330px "Manrope"', "0123456789"),
+        ]);
+
+        fontsReady.then(() => {
+          const V = Object.assign(
+            {},
+            ...JSON.parse(document.documentElement.dataset.compositionVariables).map((d) => ({ [d.id]: d.default })),
+            (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {}
+          );
+          uploadHeight(buildHeightMap(V));
+          ready = true;
+
+          const tl = gsap.timeline({ paused: true, onUpdate: () => renderAt(tl.time()) });
+          tl.to({}, { duration: DUR }, 0);
+          renderAt(0);
+          window.__timelines = window.__timelines || {};
+          window.__timelines["main"] = tl;
+        });
+      })();
+    </script>
+  </body>
+</html>

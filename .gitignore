@@ -1,0 +1,14 @@
+# секреты и служебное Vercel
+.env*
+.vercel/
+
+# зависимости и системное
+node_modules/
+.DS_Store
+Thumbs.db
+
+# видео: тяжёлые результаты и черновики (исходники композиции остаются)
+video/renders/
+video/boards/
+**/.hyperframes/
+video/build-ru/

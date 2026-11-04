@@ -1,0 +1,601 @@
+<!doctype html>
+<html
+  lang="uz"
+  data-resolution="portrait"
+  data-composition-variables='[
+    {
+    "id": "mono1",
+    "type": "string",
+    "label": "Монограмма, буква 1",
+    "default": "B"
+    },
+    {
+    "id": "mono2",
+    "type": "string",
+    "label": "Монограмма, буква 2",
+    "default": "F"
+    },
+    {
+    "id": "address",
+    "type": "string",
+    "label": "Надпись на конверте",
+    "default": "Aziz mehmonimizga"
+    },
+    {
+    "id": "blessing",
+    "type": "string",
+    "label": "Строка над именами",
+    "default": "IKKI YURAK · BIR TAQDIR"
+    },
+    {
+    "id": "groom",
+    "type": "string",
+    "label": "Жених",
+    "default": "Bekzod"
+    },
+    {
+    "id": "amp",
+    "type": "string",
+    "label": "Связка",
+    "default": "&"
+    },
+    {
+    "id": "bride",
+    "type": "string",
+    "label": "Невеста",
+    "default": "Ferangiz"
+    },
+    {
+    "id": "invite1",
+    "type": "string",
+    "label": "Приглашение, строка 1",
+    "default": "BU KUNNI SIZSIZ"
+    },
+    {
+    "id": "invite2",
+    "type": "string",
+    "label": "Приглашение, строка 2",
+    "default": "TASAVVUR QILOLMAYMIZ"
+    },
+    {
+    "id": "weekday",
+    "type": "string",
+    "label": "День недели",
+    "default": "CHORSHANBA"
+    },
+    {
+    "id": "month",
+    "type": "string",
+    "label": "Месяц",
+    "default": "NOYABR"
+    },
+    {
+    "id": "day",
+    "type": "string",
+    "label": "Число",
+    "default": "11"
+    },
+    {
+    "id": "year",
+    "type": "string",
+    "label": "Год",
+    "default": "2026"
+    },
+    {
+    "id": "time1",
+    "type": "string",
+    "label": "Время, подпись",
+    "default": "SOAT"
+    },
+    {
+    "id": "time2",
+    "type": "string",
+    "label": "Время",
+    "default": "18:00"
+    },
+    {
+    "id": "venue",
+    "type": "string",
+    "label": "Место",
+    "default": "SOFINUR HALL"
+    },
+    {
+    "id": "venue2",
+    "type": "string",
+    "label": "Тип места и город",
+    "default": "To‘yxonasi · Buxoro"
+    },
+    {
+    "id": "hosts1",
+    "type": "string",
+    "label": "Подпись, строка 1",
+    "default": "Sizni intiqlik bilan kutamiz!"
+    },
+    {
+    "id": "hosts2",
+    "type": "string",
+    "label": "Подпись, строка 2",
+    "default": "Sharipovlar oilasi"
+    }
+    ]'
+>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+@font-face {
+  font-family: 'Forum';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(assets/fonts/fo-cyrillic-ext.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Forum';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(assets/fonts/fo-cyrillic.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Forum';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(assets/fonts/fo-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Forum';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(assets/fonts/fo-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 500;
+  font-display: block;
+  src: url(assets/fonts/cgi-cyrillic-ext.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 500;
+  font-display: block;
+  src: url(assets/fonts/cgi-cyrillic.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 500;
+  font-display: block;
+  src: url(assets/fonts/cgi-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 500;
+  font-display: block;
+  src: url(assets/fonts/cgi-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+  src: url(assets/fonts/cg-cyrillic-ext.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+  src: url(assets/fonts/cg-cyrillic.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+  src: url(assets/fonts/cg-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+  src: url(assets/fonts/cg-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Great Vibes';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(assets/fonts/gv-cyrillic-ext.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Great Vibes';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(assets/fonts/gv-cyrillic.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Great Vibes';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(assets/fonts/gv-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Great Vibes';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(assets/fonts/gv-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+  :root { --silk: #e9d9cc; --cocoa: #7a5a4c; --bur: #6a1a2a; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--silk); }
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--silk); }
+  #world, #fg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 0 0; }
+  #world > *, #fg > * { position: absolute; }
+  #silk { left: -160px; top: -160px; width: 1400px; height: 2240px; }
+  .rib { left: -100px; top: -100px; width: 1280px; height: 2120px; }
+  #ribBack { filter: drop-shadow(0 20px 24px rgba(80,35,30,.26)) drop-shadow(0 4px 6px rgba(80,35,30,.16)); }
+  #ribFront { filter: drop-shadow(0 26px 30px rgba(80,35,30,.30)) drop-shadow(0 5px 8px rgba(80,35,30,.18)); }
+
+  /* конверт: 880 × 1560, левый верхний угол (100, 260) */
+  .env { left: 125px; top: 260px; width: 830px; }
+  #envBack { height: 1560px; z-index: 1; filter: drop-shadow(0 28px 40px rgba(80,40,30,.28)) drop-shadow(0 6px 10px rgba(80,40,30,.16)); }
+  #flapWrap { height: 660px; z-index: 8; perspective: 2400px; perspective-origin: 415px 560px; }
+  #flap { position: absolute; inset: 0; transform-origin: 50% 0; transform-style: preserve-3d; }
+  .face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  #faceIn { transform: rotateX(180deg); }
+  #flapOut, #flapIn { position: absolute; left: 0; top: 0; width: 830px; height: 660px; }
+  #flapOut { filter: drop-shadow(0 10px 12px rgba(80,45,30,.26)); }
+  .fshade { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
+  #shadeOut { background: linear-gradient(180deg, rgba(70,40,30,0) 0%, rgba(70,40,30,.55) 100%);
+    clip-path: polygon(0 0, 100% 0, 54% 97%, 46% 97%); }
+  #shadeIn { background: linear-gradient(0deg, rgba(20,0,5,0) 0%, rgba(20,0,5,.6) 100%);
+    clip-path: polygon(0 100%, 100% 100%, 54% 3%, 46% 3%); }
+  #seal { position: absolute; left: 265px; top: 452px; width: 300px; height: 300px; }
+  #pocket { height: 1560px; z-index: 6; filter: drop-shadow(0 -3px 5px rgba(80,40,30,.20)); }
+
+  /* открытка: 780 × 1480, левый верхний угол (150, 310) → в финале (150, 170) */
+  #card { left: 150px; top: 310px; width: 780px; height: 1480px; z-index: 4; overflow: hidden;
+    border-radius: 390px 390px 16px 16px;
+    box-shadow: 0 34px 60px rgba(80,35,30,.24), 0 8px 16px rgba(80,35,30,.16); }
+  #cardPaper { position: absolute; left: 0; top: 0; width: 780px; height: 1480px; }
+  #frame { position: absolute; left: 0; top: 0; }
+  .draw { stroke-dasharray: 1 1; stroke-dashoffset: 1; }
+  #cardSheen { position: absolute; left: -400px; top: 0; width: 360px; height: 1480px; opacity: 0; mix-blend-mode: soft-light;
+    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,250,235,.85), rgba(255,255,255,0)); transform: skewX(-16deg); }
+
+  .ln { position: absolute; left: 0; width: 780px; text-align: center; white-space: nowrap; }
+  .col { position: absolute; text-align: center; white-space: nowrap; }
+  .caps { font-family: "Forum", serif; font-weight: 400; }
+  .script { font-family: "Great Vibes", cursive; font-weight: 400; }
+  .ital { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 500; }
+  /* запас вокруг строки: росчерки и выносные элементы не обрезаются ни заливкой, ни маской */
+  .ln, .col { box-sizing: content-box; padding: 18px 24px; margin: -18px 0 0 -24px; }
+  .script { padding: 80px 110px; margin: -80px 0 0 -110px; }
+  .cocoa { color: var(--cocoa); }
+  .cocoaS { color: #84464f; }
+  .burT { color: #6e2232; }
+  .bur { background-image: linear-gradient(180deg, #93394a 24%, #6c1b2b 52%, #4d0e1b 78%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .gold { background-image: linear-gradient(100deg, #8a6330 0%, #c9a25e 18%, #f3e0aa 30%, #b48a48 44%, #e6cb90 58%, #9b7136 74%, #d8b878 88%, #8f672f 100%);
+    background-size: 260% 100%; background-position: var(--g, 35%) 0; -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  /* проявления: маска слева направо (rv — мягко, rvs — «письмо»), из центра (rvc) */
+  .rv { -webkit-mask-image: linear-gradient(90deg, #000 74%, transparent 100%); mask-image: linear-gradient(90deg, #000 74%, transparent 100%);
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: 0 0; mask-position: 0 0;
+    -webkit-mask-size: calc(var(--p, 0) * 136%) 100%; mask-size: calc(var(--p, 0) * 136%) 100%; }
+  .rvs { -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent 100%); mask-image: linear-gradient(90deg, #000 88%, transparent 100%);
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: 0 0; mask-position: 0 0;
+    -webkit-mask-size: calc(var(--p, 0) * 114%) 100%; mask-size: calc(var(--p, 0) * 114%) 100%; }
+  .rvc { -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 82%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: 50% 0; mask-position: 50% 0;
+    -webkit-mask-size: calc(var(--p, 0) * 140%) 100%; mask-size: calc(var(--p, 0) * 140%) 100%; }
+
+  /* раскладка текста (координаты внутри открытки) */
+  #orn1 { position: absolute; left: 240px; top: 64px; }
+  #tBless { top: 184px; font-size: 28px; line-height: 36px; letter-spacing: .2em; text-indent: .2em; }
+  #tGroom { top: 238px; height: 180px; font-size: 148px; line-height: 180px; }
+  #tAmp { top: 384px; height: 110px; font-size: 84px; line-height: 110px; }
+  #tBride { top: 458px; height: 180px; font-size: 148px; line-height: 180px; }
+  #div1 { position: absolute; left: 230px; top: 650px; }
+  #tInv1 { top: 698px; font-size: 29px; line-height: 38px; letter-spacing: .16em; text-indent: .16em; }
+  #tInv2 { top: 740px; font-size: 29px; line-height: 38px; letter-spacing: .16em; text-indent: .16em; }
+  .vr { position: absolute; top: 834px; width: 1.4px; height: 168px; transform-origin: 50% 50%;
+    background: linear-gradient(180deg, rgba(180,138,72,0), #c9a25e 18%, #e9d09a 50%, #b48a48 82%, rgba(180,138,72,0)); }
+  #vL { left: 290px; } #vR { left: 489px; }
+  #dLeft { left: 40px; width: 250px; top: 899px; font-size: 28px; line-height: 34px; letter-spacing: .08em; text-indent: .08em; }
+  #dMonth { left: 290px; width: 200px; top: 831px; font-size: 28px; line-height: 34px; letter-spacing: .2em; text-indent: .2em; }
+  #dDay { left: 290px; width: 200px; top: 860px; height: 118px; font-size: 112px; line-height: 118px; }
+  #dYear { left: 290px; width: 200px; top: 973px; font-size: 28px; line-height: 34px; letter-spacing: .2em; text-indent: .2em; }
+  #dT1 { left: 490px; width: 250px; top: 872px; font-size: 28px; line-height: 34px; letter-spacing: .14em; text-indent: .14em; }
+  #dT2 { left: 490px; width: 250px; top: 906px; font-size: 42px; line-height: 50px; letter-spacing: .04em; }
+  #orn2 { position: absolute; left: 270px; top: 1038px; }
+  #tVenue { top: 1104px; font-size: 46px; line-height: 58px; letter-spacing: .12em; text-indent: .12em; }
+  #tVenue2 { top: 1164px; font-size: 34px; line-height: 44px; }
+  #tHosts1 { top: 1220px; height: 76px; font-size: 46px; line-height: 76px; }
+  #tHosts2 { top: 1274px; height: 96px; font-size: 68px; line-height: 96px; }
+
+  .sprig { z-index: 9; }
+  #sprigL { left: -80px; top: 960px; width: 460px; height: 580px; transform-origin: 80px 510px; }
+  #sprigR { left: 700px; top: 270px; width: 460px; height: 590px; transform-origin: 382px 90px; }
+
+  #dust { left: 0; top: 0; width: 1080px; height: 1920px; }
+  #sweep { position: absolute; left: -900px; top: -200px; width: 700px; height: 2400px; pointer-events: none; mix-blend-mode: soft-light; opacity: .9;
+    background: linear-gradient(90deg, rgba(255,250,240,0), rgba(255,248,236,.55) 50%, rgba(255,250,240,0)); transform: rotate(18deg); }
+  #vignette { position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse 85% 75% at 50% 46%, rgba(0,0,0,0) 55%, rgba(70,35,30,.22) 100%); }
+  #grain { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; opacity: .05; mix-blend-mode: overlay; pointer-events: none; }
+
+</style>
+</head>
+<body>
+<div id="stage" data-composition-id="main" data-start="0" data-duration="28" data-width="1080" data-height="1920">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0.35">
+        <stop offset="0" stop-color="#8a6330"/><stop offset="0.22" stop-color="#d4b06c"/><stop offset="0.38" stop-color="#f3e0aa"/>
+        <stop offset="0.55" stop-color="#b48a48"/><stop offset="0.74" stop-color="#e6cb90"/><stop offset="1" stop-color="#94692f"/>
+      </linearGradient>
+      <linearGradient id="goldV" x1="0" y1="0" x2="0.2" y2="1">
+        <stop offset="0" stop-color="#e9d09a"/><stop offset="0.35" stop-color="#b48a48"/><stop offset="0.6" stop-color="#f1dca4"/><stop offset="1" stop-color="#9a7035"/>
+      </linearGradient>
+      <g id="ornA">
+        <path d="M150,14 C157,28 157,40 150,52 C143,40 143,28 150,14 Z" fill="url(#gold)"/>
+        <circle cx="150" cy="6" r="2.2" fill="url(#gold)"/><circle cx="150" cy="61" r="2.6" fill="url(#gold)"/>
+        <g id="ornHalf" fill="none" stroke="url(#gold)" stroke-linecap="round">
+          <path d="M156,44 C172,52 188,44 183,34 C179,26 167,28 170,36" stroke-width="1.7"/>
+          <path d="M159,53 C190,64 222,44 253,48 C272,51 278,39 267,34 C258,31 251,40 259,44" stroke-width="1.6"/>
+          <path d="M176,62 C200,71 232,67 250,59" stroke-width="1.1"/>
+          <circle cx="214" cy="51" r="1.7" fill="url(#gold)" stroke="none"/><circle cx="284" cy="46" r="1.5" fill="url(#gold)" stroke="none"/>
+        </g>
+        <use href="#ornHalf" transform="translate(300,0) scale(-1,1)"/>
+      </g>
+      <g id="divA">
+        <path d="M18,12 H138 M182,12 H302" stroke="url(#gold)" stroke-width="1.2" fill="none"/>
+        <path d="M160,3 L167,12 L160,21 L153,12 Z" fill="url(#gold)"/>
+        <circle cx="145" cy="12" r="1.9" fill="url(#gold)"/><circle cx="175" cy="12" r="1.9" fill="url(#gold)"/>
+      </g>
+    </defs>
+  </svg>
+
+  <div id="world">
+    <canvas id="silk" width="1400" height="2240" data-layout-ignore></canvas>
+    <canvas id="ribBack" class="rib" width="1920" height="3180" data-layout-ignore data-layout-allow-occlusion></canvas>
+    <canvas id="envBack" class="env" data-layout-ignore></canvas>
+    <div id="flapWrap" class="env">
+      <div id="flap">
+        <div id="faceOut" class="face">
+          <canvas id="flapOut" data-layout-ignore></canvas>
+          <div id="shadeOut" class="fshade"></div>
+          <canvas id="seal" data-layout-ignore></canvas>
+        </div>
+        <div id="faceIn" class="face">
+          <canvas id="flapIn" data-layout-ignore></canvas>
+          <div id="shadeIn" class="fshade"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="card">
+      <canvas id="cardPaper" data-layout-ignore></canvas>
+      <svg id="frame" viewBox="0 0 780 1480" width="780" height="1480">
+        <path d="M1.6,1480 L1.6,390 A388.4,388.4 0 0 1 778.4,390 L778.4,1480" fill="none" stroke="url(#goldV)" stroke-width="3.2"/>
+        <g fill="none" stroke="url(#goldV)">
+          <path class="draw" d="M390,30 A360,360 0 0 0 30,390 L30,1480" stroke-width="1.6" pathLength="1"/>
+          <path class="draw" d="M390,30 A360,360 0 0 1 750,390 L750,1480" stroke-width="1.6" pathLength="1"/>
+          <path class="draw" d="M390,40 A350,350 0 0 0 40,390 L40,1480" stroke-width="0.8" pathLength="1"/>
+          <path class="draw" d="M390,40 A350,350 0 0 1 740,390 L740,1480" stroke-width="0.8" pathLength="1"/>
+        </g>
+      </svg>
+      <svg id="orn1" class="rvc" viewBox="0 0 300 72" width="300" height="72"><use href="#ornA"/></svg>
+      <div id="tBless" class="ln caps cocoa rv" data-layout-allow-occlusion data-layout-allow-overflow></div>
+      <div id="tGroom" class="ln script bur rvs" data-layout-allow-occlusion data-layout-allow-overflow></div>
+      <div id="tAmp" class="ln script gold rvs" data-layout-allow-occlusion data-layout-allow-overflow></div>
+      <div id="tBride" class="ln script bur rvs" data-layout-allow-occlusion data-layout-allow-overflow></div>
+      <svg id="div1" class="rvc" viewBox="0 0 320 24" width="320" height="24"><use href="#divA"/></svg>
+      <div id="tInv1" class="ln caps burT rv" data-layout-allow-occlusion data-layout-allow-overflow></div>
+      <div id="tInv2" class="ln caps burT rv" data-layout-allow-occlusion data-layout-allow-overflow></div>
+      <div id="vL" class="vr"></div><div id="vR" class="vr"></div>
+      <div id="dLeft" class="col caps cocoa rv" data-layout-allow-occlusion data-layout-allow-overflow></div>
+      <div id="dMonth" class="col caps gold rv" data-layout-allow-occlusion data-layout-allow-overflow></div>
+      <div id="dDay" class="col caps bur rvc" data-layout-allow-occlusion data-layout-allow-overflow></div>
+      <div id="dYear" class="col caps gold rv" data-layout-allow-occlusion data-layout-allow-overflow></div>
+      <div id="dT1" class="col caps cocoa rv" data-layout-allow-occlusion data-layout-allow-overflow></div>
+      <div id="dT2" class="col caps bur rv" data-layout-allow-occlusion data-layout-allow-overflow></div>
+      <svg id="orn2" class="rvc" viewBox="0 0 300 72" width="240" height="58"><use href="#ornA"/></svg>
+      <div id="tVenue" class="ln caps bur rv" data-layout-allow-occlusion data-layout-allow-overflow></div>
+      <div id="tVenue2" class="ln ital cocoa rv" data-layout-allow-occlusion data-layout-allow-overflow></div>
+      <div id="tHosts1" class="ln script cocoaS rvs" data-layout-allow-occlusion data-layout-allow-overflow></div>
+      <div id="tHosts2" class="ln script bur rvs" data-layout-allow-occlusion data-layout-allow-overflow></div>
+      <div id="cardSheen" data-layout-ignore></div>
+    </div>
+
+    <canvas id="pocket" class="env" data-layout-ignore data-layout-allow-occlusion></canvas>
+    <canvas id="sprigL" class="sprig" data-layout-ignore data-layout-allow-occlusion></canvas>
+    <canvas id="sprigR" class="sprig" data-layout-ignore data-layout-allow-occlusion></canvas>
+  </div>
+
+  <div id="fg">
+    <canvas id="ribFront" class="rib" width="1920" height="3180" data-layout-ignore data-layout-allow-occlusion></canvas>
+    <canvas id="dust" width="1080" height="1920" data-layout-ignore data-layout-allow-occlusion></canvas>
+  </div>
+  <div id="sweep" data-layout-ignore></div>
+  <div id="vignette" data-layout-ignore></div>
+  <canvas id="grain" width="540" height="960" data-layout-ignore></canvas>
+
+  <audio id="music" class="clip" src="assets/music.mp3" data-start="0" data-duration="28" data-media-start="8.5"
+    data-track-index="1" data-volume="1" data-fade-in="0.12" data-fade-out="2.4"></audio>
+</div>
+
+<script src="assets/satin.js"></script>
+<script src="assets/bake2.js"></script>
+<script src="assets/ribbons.js"></script>
+<script>
+(() => {
+  const $ = (s) => document.querySelector(s);
+  const B = window.Bake2;
+
+  const fontsReady = Promise.all([
+    document.fonts.load('400 148px "Great Vibes"', "Bekzod & Ferangiz Бекзод и Ферангиз BFБФ"),
+    document.fonts.load('400 30px "Forum"', "SIZNI TO‘YIMIZGA ПРИГЛАШАЕМ 0123456789"),
+    document.fonts.load('italic 500 34px "Cormorant Garamond"', "To‘yxonasi Банкетный"),
+  ]);
+
+  fontsReady.then(() => {
+    const V = Object.assign({},
+      ...JSON.parse(document.documentElement.dataset.compositionVariables).map((d) => ({ [d.id]: d.default })),
+      (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {});
+
+    /* ---------- материалы ---------- */
+    const KE = 1.5, KC = 1.25;
+    const size = (el, w, h, k) => { el.width = Math.round(w * k); el.height = Math.round(h * k); };
+    size($("#envBack"), 830, 1560, KE); size($("#pocket"), 830, 1560, KE);
+    size($("#flapOut"), 830, 660, KE); size($("#flapIn"), 830, 660, KE);
+    B.envelope({ back: $("#envBack"), pocket: $("#pocket"), flapOut: $("#flapOut"), flapIn: $("#flapIn") }, KE, V.mono1 + " & " + V.mono2, V.address);
+    size($("#cardPaper"), 780, 1480, KC); B.card($("#cardPaper"), KC);
+    $("#seal").width = $("#seal").height = 450; B.seal($("#seal"), V.mono1, V.mono2);
+    size($("#sprigL"), 460, 580, 1.5); size($("#sprigR"), 460, 590, 1.5);
+    B.sprig($("#sprigL"), 1.5, { base: [80, 510], dir: -1.2, bend: 0.35, len: 280, leaves: 10, leafLen: 66, goldShare: 0.35, buds: 7, seed: 5 });
+    B.sprig($("#sprigR"), 1.5, { base: [382, 90], dir: 2.05, bend: 0.30, len: 290, leaves: 10, leafLen: 64, goldShare: 0.4, buds: 6, seed: 9 });
+    B.grain($("#grain"));
+
+    const silk = Satin.Silk($("#silk"), [-160, -160, 1400, 2240], { lo: [0.80, 0.68, 0.61], mid: [0.93, 0.86, 0.80], hi: [1.0, 0.975, 0.95], relief: 0.16 });
+    const R = window.RIBBONS;
+    const ribBack = Satin.Ribbons($("#ribBack"), [-100, -100, 1280, 2120], R.back);
+    const ribFront = Satin.Ribbons($("#ribFront"), [-100, -100, 1280, 2120], R.front);
+    const dustPts = B.dust(70, 21, [-40, 0, 1160, 2300]);
+
+    /* ---------- тексты ---------- */
+    const txt = { tBless: "blessing", tGroom: "groom", tAmp: "amp", tBride: "bride", tInv1: "invite1", tInv2: "invite2",
+      dLeft: "weekday", dMonth: "month", dDay: "day", dYear: "year", dT1: "time1", dT2: "time2",
+      tVenue: "venue", tVenue2: "venue2", tHosts1: "hosts1", tHosts2: "hosts2" };
+    for (const [id, key] of Object.entries(txt)) $("#" + id).textContent = V[key];
+
+    /* ---------- камера: плавный сплайн по ключам (t, масштаб, фокус x, фокус y) ---------- */
+    const CAM = [[0, 1.03, 540, 990], [1.5, 1.10, 540, 925], [2.6, 1.085, 540, 905], [4.9, 1.0, 540, 960]];
+    function camAt(t) {
+      const K = CAM, n = K.length;
+      if (t <= K[0][0]) return K[0].slice(1);
+      if (t >= K[n - 1][0]) return K[n - 1].slice(1);
+      let i = 0; while (K[i + 1][0] < t) i++;
+      const t0 = K[i][0], t1 = K[i + 1][0], h = t1 - t0, u = (t - t0) / h;
+      const slope = (j, c) => {
+        if (j === 0 || j === n - 1) return 0;
+        return (K[j + 1][c] - K[j - 1][c]) / (K[j + 1][0] - K[j - 1][0]);
+      };
+      const out = [];
+      for (let c = 1; c <= 3; c++) {
+        const p0 = K[i][c], p1 = K[i + 1][c], m0 = slope(i, c) * h, m1 = slope(i + 1, c) * h;
+        const u2 = u * u, u3 = u2 * u;
+        out.push((2 * u3 - 3 * u2 + 1) * p0 + (u3 - 2 * u2 + u) * m0 + (-2 * u3 + 3 * u2) * p1 + (u3 - u2) * m1);
+      }
+      return out;
+    }
+    const smooth = (a, b, x) => { const v = Math.min(1, Math.max(0, (x - a) / (b - a))); return v * v * (3 - 2 * v); };
+
+    const world = $("#world"), fg = $("#fg"), sprigL = $("#sprigL"), sprigR = $("#sprigR"), dustCv = $("#dust");
+    const silkCv = $("#silk"), ribBackCv = $("#ribBack");
+    function render(t) {
+      const [s, fx, fy] = camAt(t);
+      // после 4.9 с мир стоит ровно в целых пикселях — текст не перерисовывается и не дрожит
+      world.style.transform = t >= 4.9 ? "none" : `translate(${540 - fx * s}px, ${960 - fy * s}px) scale(${s})`;
+      const sf = 1 + (s - 1) * 1.3;                             // передний план ближе к камере
+      // глубина: фон и ленты медленно плывут в разные стороны (в этих слоях нет текста)
+      const d = smooth(4.0, 9.0, t), k1 = Math.sin(t * 0.21), k2 = Math.cos(t * 0.17);
+      silkCv.style.transform = `translate(${(d * 7 * k1).toFixed(3)}px, ${(d * 5 * k2).toFixed(3)}px)`;
+      ribBackCv.style.transform = `translate(${(d * -9 * k2).toFixed(3)}px, ${(d * 7 * k1).toFixed(3)}px)`;
+      fg.style.transform = `translate(${540 - fx * sf + d * 12 * k1}px, ${960 - fy * sf + d * -10 * k2}px) scale(${sf})`;
+      const blur = 7 * (1 - smooth(1.6, 4.6, t));               // перевод фокуса с печати на открытку
+      $("#ribFront").style.filter = `blur(${blur.toFixed(2)}px) drop-shadow(0 26px 30px rgba(80,35,30,.30)) drop-shadow(0 5px 8px rgba(80,35,30,.18))`;
+      silk(t); ribBack(t); ribFront(t);
+      B.drawDust(dustCv, dustPts, t, 1, 0.55 + 0.45 * smooth(3, 6, t));
+      const sw = (a, f, p) => a * Math.sin(t * f + p);
+      sprigL.style.transform = `rotate(${(sw(1.1, 0.55, 0.3) + sw(0.4, 1.3, 1.9)).toFixed(3)}deg)`;
+      sprigR.style.transform = `rotate(${(sw(1.0, 0.5, 2.2) + sw(0.35, 1.2, 0.7)).toFixed(3)}deg)`;
+    }
+
+    /* ---------- таймлайн ---------- */
+    const tl = gsap.timeline({ paused: true });
+    const clock = { t: 0 };
+    tl.to(clock, { t: 28, duration: 28, ease: "none", onUpdate: () => render(clock.t) }, 0);
+
+    const ENV = ["#envBack", "#flapWrap", "#pocket"];
+    gsap.set(ENV, { y: 0 }); gsap.set("#card", { y: 0 }); gsap.set("#flap", { rotationX: 0 });
+    gsap.set(["#sprigL", "#sprigR"], { opacity: 0 });
+
+    // свет скользит по конверту
+    tl.fromTo("#sweep", { x: 0 }, { x: 2300, duration: 2.4, ease: "sine.inOut" }, 0.2);
+
+    // 1.5 — 2.7: клапан открывается (ребром к камере ровно на середине — там и меняется порядок слоёв)
+    tl.fromTo("#flap", { rotationX: 0 }, { rotationX: 180, duration: 1.2, ease: "sine.inOut" }, 1.5);
+    tl.fromTo("#shadeOut", { opacity: 0 }, { opacity: 0.55, duration: 0.6, ease: "sine.in" }, 1.5);
+    tl.fromTo("#shadeIn", { opacity: 0.7 }, { opacity: 0, duration: 0.6, ease: "sine.out" }, 2.1);
+    tl.set("#flapWrap", { zIndex: 2 }, 2.1);
+
+    // 2.4 — 4.8: открытка выходит, конверт уходит вниз кадра
+    tl.to("#card", { y: -140, duration: 2.3, ease: "power2.inOut" }, 2.4);
+    tl.to(ENV, { y: 1240, duration: 2.4, ease: "power2.inOut" }, 2.4);
+
+    // веточки распускаются у краёв открытки
+    tl.fromTo("#sprigL", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 1.5, ease: "sine.out" }, 4.3);
+    tl.fromTo("#sprigR", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 1.5, ease: "sine.out" }, 4.5);
+
+    const P = (sel, t, dur, ease = "sine.inOut") => tl.fromTo(sel, { "--p": 0 }, { "--p": 1, duration: dur, ease }, t);
+    tl.fromTo("#frame .draw", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.9, ease: "sine.inOut", stagger: 0.08 }, 4.2);
+    P("#orn1", 4.6, 1.0);
+    P("#tBless", 5.0, 1.0);
+    P("#tGroom", 5.6, 1.3, "power1.inOut");
+    P("#tAmp", 6.6, 0.7, "power1.inOut");
+    P("#tBride", 7.0, 1.4, "power1.inOut");
+    P("#div1", 8.2, 0.9);
+    P("#tInv1", 9.0, 1.0); P("#tInv2", 9.5, 1.0);
+    tl.fromTo(["#vL", "#vR"], { scaleY: 0 }, { scaleY: 1, duration: 0.9, ease: "sine.inOut" }, 10.3);
+    P("#dMonth", 10.6, 0.8); P("#dDay", 10.9, 1.0); P("#dYear", 11.3, 0.8);
+    P("#dLeft", 11.6, 0.9); P("#dT1", 11.9, 0.7); P("#dT2", 12.1, 0.9);
+    P("#orn2", 13.2, 1.0);
+    P("#tVenue", 13.6, 1.1); P("#tVenue2", 14.2, 1.0);
+    P("#tHosts1", 15.2, 1.4, "power1.inOut"); P("#tHosts2", 16.4, 1.5, "power1.inOut");
+
+    // блеск фольги и свет
+    tl.fromTo(".gold", { "--g": "120%" }, { "--g": "-20%", duration: 2.0, ease: "sine.inOut" }, 8.4);
+    tl.set(".gold", { "--g": "120%" }, 20.45);
+    tl.to(".gold", { "--g": "-20%", duration: 2.4, ease: "sine.inOut" }, 20.5);
+    tl.fromTo("#cardSheen", { x: 0, opacity: 0.9 }, { x: 1600, opacity: 0.9, duration: 3.0, ease: "sine.inOut" }, 19.6);
+    tl.set("#sweep", { x: 0 }, 21.9);
+    tl.to("#sweep", { x: 2300, duration: 3.0, ease: "sine.inOut" }, 22.0);
+
+    render(0);
+    window.__timelines = window.__timelines || {};
+    window.__timelines["main"] = tl;
+  });
+})();
+
+</script>
+</body>
+</html>

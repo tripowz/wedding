@@ -1,0 +1,322 @@
+<!doctype html>
+<html
+  lang="uz"
+  data-resolution="portrait"
+  data-composition-variables='[
+    {"id":"mono1","type":"string","label":"Монограмма, буква 1","default":"B"},
+    {"id":"mono2","type":"string","label":"Монограмма, буква 2","default":"F"},
+    {"id":"blessing","type":"string","label":"Строка над именами","default":"OTA-ONALARIMIZ DUOSI BILAN"},
+    {"id":"groom","type":"string","label":"Жених","default":"BEKZOD"},
+    {"id":"and","type":"string","label":"Связка между именами","default":"va"},
+    {"id":"bride","type":"string","label":"Невеста","default":"FERANGIZ"},
+    {"id":"invite1","type":"string","label":"Приглашение, строка 1","default":"SIZNI NIKOH TO‘YIMIZGA"},
+    {"id":"invite2","type":"string","label":"Приглашение, строка 2","default":"TAKLIF QILAMIZ"},
+    {"id":"weekday","type":"string","label":"День недели","default":"CHORSHANBA"},
+    {"id":"day","type":"string","label":"Число","default":"11"},
+    {"id":"month","type":"string","label":"Месяц","default":"NOYABR"},
+    {"id":"year","type":"string","label":"Год","default":"2026"},
+    {"id":"time1","type":"string","label":"Время, строка 1","default":"SOAT"},
+    {"id":"time2","type":"string","label":"Время, строка 2","default":"18:00"},
+    {"id":"venue","type":"string","label":"Место","default":"SOFINUR HALL"},
+    {"id":"venue2","type":"string","label":"Тип места и город","default":"TO‘YXONASI · BUXORO"},
+    {"id":"hosts","type":"string","label":"Подпись (рукописная)","default":"Hurmat bilan, Sharipovlar oilasi"}
+  ]'
+>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+      @font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 400; font-display: block; src: url('assets/fonts/co3ZmX5slCNuHLi8bLeY9MK7whWMhyjYrEtFmSq17w.woff2') format('woff2'); unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 400; font-display: block; src: url('assets/fonts/co3ZmX5slCNuHLi8bLeY9MK7whWMhyjYrEtMmSq17w.woff2') format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 400; font-display: block; src: url('assets/fonts/co3ZmX5slCNuHLi8bLeY9MK7whWMhyjYrEtGmSq17w.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 400; font-display: block; src: url('assets/fonts/co3ZmX5slCNuHLi8bLeY9MK7whWMhyjYrEtImSo.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 500; font-display: block; src: url('assets/fonts/co3ZmX5slCNuHLi8bLeY9MK7whWMhyjYrEtFmSq17w.woff2') format('woff2'); unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 500; font-display: block; src: url('assets/fonts/co3ZmX5slCNuHLi8bLeY9MK7whWMhyjYrEtMmSq17w.woff2') format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 500; font-display: block; src: url('assets/fonts/co3ZmX5slCNuHLi8bLeY9MK7whWMhyjYrEtGmSq17w.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 500; font-display: block; src: url('assets/fonts/co3ZmX5slCNuHLi8bLeY9MK7whWMhyjYrEtImSo.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYpHtKgS4.woff2') format('woff2'); unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYrXtKgS4.woff2') format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYp3tKgS4.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtK.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYpHtKgS4.woff2') format('woff2'); unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYrXtKgS4.woff2') format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYp3tKgS4.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtK.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYpHtKgS4.woff2') format('woff2'); unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYrXtKgS4.woff2') format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYp3tKgS4.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtK.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/xn7gYHE41ni1AdIRggqxSuXd.woff2') format('woff2'); unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/xn7gYHE41ni1AdIRggOxSuXd.woff2') format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/xn7gYHE41ni1AdIRggmxSuXd.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/xn7gYHE41ni1AdIRggexSg.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/xn7gYHE41ni1AdIRggqxSuXd.woff2') format('woff2'); unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/xn7gYHE41ni1AdIRggOxSuXd.woff2') format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/xn7gYHE41ni1AdIRggmxSuXd.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/xn7gYHE41ni1AdIRggexSg.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/xn7gYHE41ni1AdIRggqxSuXd.woff2') format('woff2'); unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/xn7gYHE41ni1AdIRggOxSuXd.woff2') format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/xn7gYHE41ni1AdIRggmxSuXd.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/xn7gYHE41ni1AdIRggexSg.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+      @font-face { font-family: 'Great Vibes'; font-weight: 400; font-display: block; src: url('assets/fonts/gv-cyrillic-ext.woff2') format('woff2'); unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+      @font-face { font-family: 'Great Vibes'; font-weight: 400; font-display: block; src: url('assets/fonts/gv-cyrillic.woff2') format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+      @font-face { font-family: 'Great Vibes'; font-weight: 400; font-display: block; src: url('assets/fonts/gv-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+      @font-face { font-family: 'Great Vibes'; font-weight: 400; font-display: block; src: url('assets/fonts/gv-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  :root {
+    --ground: #dcd3c4;
+    --pearl: #f6f3ee;
+    --ink: #55514b;
+    --wine: #6b222c;
+    --wine-deep: #4a1219;
+    --silver: #cfccc6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ground); }
+  #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--ground); }
+  .abs { position: absolute; left: 0; top: 0; }
+  #world { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 540px 960px; }
+  #ground { position: absolute; left: -160px; top: -280px; width: 1400px; height: 2480px; }
+
+  /* ---------- Конверт ---------- */
+  #env { position: absolute; left: 110px; top: 380px; width: 860px; height: 1240px; perspective: 2200px; perspective-origin: 50% 0%; }
+  #env > * { position: absolute; }
+  #envShadow { left: -30px; top: -10px; width: 920px; height: 1300px; border-radius: 30px;
+    background: radial-gradient(50% 50% at 50% 54%, rgba(70, 52, 40, 0.42), rgba(70, 52, 40, 0) 70%); filter: blur(18px); }
+  #envBack, #envFront, #flapOut, #flapIn { width: 860px; }
+  #envBack { left: 0; top: 0; height: 1240px; }
+  #envFront { left: 0; top: 0; height: 1240px; }
+  #flap { left: 0; top: 0; width: 860px; height: 700px; transform-style: preserve-3d; transform-origin: 50% 0; }
+  #flapOut, #flapIn { position: absolute; left: 0; top: 0; height: 700px; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  #flapIn { transform: rotateX(180deg); }
+  #flapShade { position: absolute; left: 0; top: 0; width: 860px; height: 700px; pointer-events: none;
+    clip-path: polygon(0 0, 100% 0, 50% 100%); background: #2a1a12; opacity: 0; }
+  #seal, #envSprig { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  #seal { position: absolute; left: 280px; top: 520px; width: 300px; height: 300px; }
+  #envSprig { position: absolute; left: 150px; top: 330px; width: 560px; height: 560px; }
+
+  /* ---------- Открытка ---------- */
+  #card { position: absolute; left: 40px; top: 40px; width: 1000px; height: 1840px; transform-origin: 50% 50%; }
+  #cardShadow { position: absolute; inset: 0; transform: translate(0, 14px); filter: blur(22px); background: rgba(60, 45, 35, 0.32); border-radius: 8px; }
+  #cardPaper { position: absolute; inset: 0; }
+  #arch { position: absolute; inset: 0; width: 1000px; height: 1840px; overflow: visible; }
+  #mono { position: absolute; left: 175px; top: 150px; width: 650px; height: 470px; }
+  #monoShine { position: absolute; left: 175px; top: 150px; width: 650px; height: 470px;
+    -webkit-mask-image: linear-gradient(105deg, transparent calc(var(--shine) - 14%), #000 var(--shine), transparent calc(var(--shine) + 14%));
+    mask-image: linear-gradient(105deg, transparent calc(var(--shine) - 14%), #000 var(--shine), transparent calc(var(--shine) + 14%));
+    --shine: -30%; }
+  #flora { position: absolute; left: -40px; top: -40px; width: 1080px; height: 1920px; }
+
+  .t { position: absolute; left: 0; width: 1000px; text-align: center; color: var(--ink);
+    font-family: "Cormorant Garamond", serif; font-weight: 500; white-space: nowrap;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85), 0 -1px 0 rgba(90, 80, 70, 0.18); }
+  .caps { text-transform: none; letter-spacing: 0.2em; }
+  .t span { display: inline-block; }
+  .script { font-family: "Great Vibes", cursive; font-weight: 400; letter-spacing: 0; color: var(--wine);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7); }
+  #tBless { top: 650px; font-size: 28px; letter-spacing: 0.22em; }
+  #tGroom { top: 742px; font-size: 76px; letter-spacing: 0.16em; padding-left: 0.16em; }
+  #tAnd { top: 838px; font-size: 104px; line-height: 1; }
+  #tBride { top: 940px; font-size: 76px; letter-spacing: 0.16em; padding-left: 0.16em; }
+  #tInv1 { top: 1092px; font-size: 30px; letter-spacing: 0.2em; }
+  #tInv2 { top: 1136px; font-size: 30px; letter-spacing: 0.2em; }
+  .dateCol { position: absolute; top: 1232px; height: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: var(--ink); font-family: "Cormorant Garamond", serif; font-weight: 500; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85); }
+  #dLeft { left: 150px; width: 240px; font-size: 28px; letter-spacing: 0.06em; }
+  #dMid { left: 400px; width: 200px; }
+  #dRight { left: 610px; width: 240px; font-size: 28px; letter-spacing: 0.16em; line-height: 1.4; }
+  #dDay { font-size: 96px; line-height: 0.95; letter-spacing: 0.02em; font-variant-numeric: lining-nums; }
+  #dMonth, #dYear { font-size: 28px; letter-spacing: 0.2em; line-height: 1.35; }
+  .rule { position: absolute; height: 1.5px; background: rgba(110, 100, 90, 0.55); transform-origin: 50% 50%; }
+  .vrule { position: absolute; width: 1.5px; background: rgba(110, 100, 90, 0.55); transform-origin: 50% 0; }
+  #tVenue { top: 1458px; font-size: 52px; letter-spacing: 0.16em; padding-left: 0.16em; }
+  #tVenue2 { top: 1530px; font-size: 28px; letter-spacing: 0.2em; }
+  #tHosts { top: 1626px; font-size: 54px; }
+  .orn { position: absolute; left: 470px; width: 60px; height: 14px; }
+
+  #light { position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(120% 80% at 30% 18%, rgba(255, 249, 238, 0.32), rgba(255, 249, 238, 0) 60%),
+                radial-gradient(130% 90% at 50% 55%, rgba(0, 0, 0, 0) 58%, rgba(60, 40, 30, 0.18) 100%); }
+  #sweep { position: absolute; left: -600px; top: -400px; width: 700px; height: 2800px; pointer-events: none;
+    background: linear-gradient(90deg, rgba(255, 252, 244, 0), rgba(255, 252, 244, 0.22), rgba(255, 252, 244, 0));
+    mix-blend-mode: soft-light; }
+  #grain { position: absolute; inset: 0; width: 1080px; height: 1920px; opacity: 0.06; pointer-events: none; mix-blend-mode: multiply; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="47" data-width="1080" data-height="1920">
+  <div id="world">
+    <canvas id="ground" width="1400" height="2480" data-layout-ignore></canvas>
+
+    <div id="env">
+      <div id="envShadow"></div>
+      <canvas id="envBack" width="860" height="1240"></canvas>
+      <div id="card">
+        <div id="cardShadow"></div>
+        <canvas id="cardPaper" width="1000" height="1840"></canvas>
+        <svg id="arch" viewBox="0 0 1000 1840"></svg>
+        <canvas id="mono" width="650" height="470"></canvas>
+        <canvas id="monoShine" width="650" height="470"></canvas>
+        <div id="tBless" class="t"></div>
+        <div id="tGroom" class="t"></div>
+        <div id="tAnd" class="t script"></div>
+        <div id="tBride" class="t"></div>
+        <div id="tInv1" class="t"></div>
+        <div id="tInv2" class="t"></div>
+        <div class="rule" id="rTop" style="left:150px; top:1232px; width:700px;"></div>
+        <div class="rule" id="rBot" style="left:150px; top:1382px; width:700px;"></div>
+        <div class="vrule" id="vL" style="left:395px; top:1252px; height:110px;"></div>
+        <div class="vrule" id="vR" style="left:605px; top:1252px; height:110px;"></div>
+        <div class="dateCol" id="dLeft"></div>
+        <div class="dateCol" id="dMid"><div id="dDay"></div><div id="dMonth"></div><div id="dYear"></div></div>
+        <div class="dateCol" id="dRight"><div id="dT1"></div><div id="dT2"></div></div>
+        <div id="tVenue" class="t"></div>
+        <div id="tVenue2" class="t"></div>
+        <svg class="orn" id="orn1" style="top:1590px" viewBox="0 0 60 14"></svg>
+        <div id="tHosts" class="t script"></div>
+        <svg class="orn" id="orn2" style="top:1736px" viewBox="0 0 60 14"></svg>
+        <canvas id="flora" width="1080" height="1920" data-layout-ignore data-layout-allow-occlusion></canvas>
+      </div>
+      <canvas id="envFront" width="860" height="1240" data-layout-ignore data-layout-allow-occlusion></canvas>
+      <div id="flap">
+        <canvas id="flapOut" width="860" height="700"></canvas>
+        <canvas id="flapIn" width="860" height="700"></canvas>
+        <div id="flapShade"></div>
+        <canvas id="envSprig" width="560" height="560"></canvas>
+        <canvas id="seal" width="300" height="300"></canvas>
+      </div>
+    </div>
+  </div>
+  <div id="sweep"></div>
+  <div id="light"></div>
+  <canvas id="grain" width="1080" height="1920" data-layout-ignore></canvas>
+
+  <audio id="music" class="clip" src="assets/music.mp3" data-start="0" data-duration="47" data-media-start="8.5"
+    data-track-index="1" data-volume="1" data-fade-in="0.12" data-fade-out="2.2"></audio>
+</div>
+
+<script src="assets/bake.js"></script>
+<script>
+(() => {
+  const $ = (s) => document.querySelector(s);
+  const B = window.Bake;
+
+  const fontsReady = Promise.all([
+    document.fonts.load('500 76px "Cormorant Garamond"', "BEKZODБЕКЗОД"),
+    document.fonts.load('500 400px "Cormorant Garamond"', "BFБФ"),
+    document.fonts.load('400 104px "Great Vibes"', "va и Hurmat С уважением"),
+  ]);
+
+  fontsReady.then(() => {
+    const V = Object.assign({},
+      ...JSON.parse(document.documentElement.dataset.compositionVariables).map((d) => ({ [d.id]: d.default })),
+      (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {});
+
+    /* ---------- текстуры ---------- */
+    B.paper($("#ground"), { base: [220, 211, 196], seed: 3, fiber: 0.07, grain: 7, emboss: 0.9 });
+    B.envelope($("#envBack"), $("#envFront"), $("#flapOut"), $("#flapIn"));
+    B.card($("#cardPaper"));
+    B.arch($("#arch"));
+    B.monogram($("#mono"), $("#monoShine"), V.mono1, V.mono2);
+    B.seal($("#seal"), V.mono1, V.mono2);
+    B.flora($("#flora"));
+    B.sprig($("#envSprig"));
+    B.grain($("#grain"));
+    B.ornament($("#orn1")); B.ornament($("#orn2"));
+
+    /* ---------- тексты (буквы — отдельными span для появления) ---------- */
+    const letters = (el, str) => { el.innerHTML = ""; Array.from(str).forEach((ch) => { const s = document.createElement("span"); s.textContent = ch === " " ? " " : ch; el.appendChild(s); }); return Array.from(el.children); };
+    const words = (el, str) => { el.innerHTML = ""; str.split(" ").forEach((w, i, a) => { const s = document.createElement("span"); s.textContent = w + (i < a.length - 1 ? " " : ""); el.appendChild(s); }); return Array.from(el.children); };
+    const wBless = words($("#tBless"), V.blessing);
+    const lGroom = letters($("#tGroom"), V.groom);
+    $("#tAnd").textContent = V.and;
+    const lBride = letters($("#tBride"), V.bride);
+    const wInv1 = words($("#tInv1"), V.invite1), wInv2 = words($("#tInv2"), V.invite2);
+    $("#dLeft").textContent = V.weekday;
+    $("#dDay").textContent = V.day; $("#dMonth").textContent = V.month; $("#dYear").textContent = V.year;
+    $("#dT1").textContent = V.time1; $("#dT2").textContent = V.time2;
+    const wVenue = words($("#tVenue"), V.venue), wVenue2 = words($("#tVenue2"), V.venue2);
+    $("#tHosts").textContent = V.hosts;
+
+    /* ---------- таймлайн ---------- */
+    const tl = gsap.timeline({ paused: true });
+    const CARD_IN = { x: -110, y: -300, scale: 0.6 };      // открытка внутри конверта (координаты относительно #env)
+
+    // исходные состояния
+    gsap.set("#world", { scale: 1, x: 0, y: 0 });
+    gsap.set("#card", { x: CARD_IN.x, y: CARD_IN.y, scale: CARD_IN.scale, zIndex: 2 });
+    gsap.set("#envBack", { zIndex: 1 }); gsap.set("#envFront", { zIndex: 3 }); gsap.set("#flap", { zIndex: 4, rotationX: 0 });
+    gsap.set("#flora", { opacity: 0 });
+
+    // 0 — 3.0: конверт в свете, медленный наезд
+    tl.fromTo("#world", { scale: 1.0 }, { scale: 1.07, duration: 3.0, ease: "power1.inOut" }, 0);
+    tl.fromTo("#sweep", { x: 0 }, { x: 2000, duration: 3.2, ease: "power1.inOut" }, 0.2);
+
+    // 3.0 — 4.3: клапан открывается вместе с печатью
+    tl.fromTo("#flap", { rotationX: 0 }, { rotationX: 178, duration: 1.3, ease: "power2.inOut" }, 3.0);
+    tl.fromTo("#flapShade", { opacity: 0 }, { opacity: 0.35, duration: 0.65, ease: "power1.in" }, 3.0);
+    tl.to("#flapShade", { opacity: 0, duration: 0.65, ease: "power1.out" }, 3.65);
+    tl.set("#flap", { zIndex: 0 }, 3.66);
+    tl.to("#world", { scale: 1.0, y: 200, duration: 2.6, ease: "power2.inOut" }, 3.0);
+
+    // 4.3 — 6.0: открытка выходит из кармана
+    tl.fromTo("#card", { y: CARD_IN.y }, { y: -930, duration: 1.7, ease: "power3.out" }, 4.3);
+    tl.set("#card", { zIndex: 5 }, 5.6);
+
+    // 6.0 — 8.3: открытка поднимается к камере и заполняет кадр; конверт уходит вниз и в расфокус
+    tl.to("#card", { x: -110, y: -380, scale: 1, duration: 2.3, ease: "power3.inOut" }, 6.0);
+    tl.to("#world", { y: 0, duration: 2.3, ease: "power3.inOut" }, 6.0);
+    tl.to(["#envBack", "#envFront", "#flap", "#envShadow"], { y: 900, opacity: 0, filter: "blur(10px)", duration: 1.9, ease: "power2.in" }, 6.1);
+    tl.to("#ground", { filter: "blur(3px)", duration: 2.3, ease: "power2.inOut" }, 6.0);
+    tl.fromTo("#flora", { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 1.6, ease: "power2.out" }, 6.9);
+
+    // Камера по открытке: наезд на верх, затем вниз по блокам, финальный отъезд
+    // Камера по открытке: медленный наезд вслед за появлением строк, затем отъезд на всю открытку
+    tl.to("#world", { scale: 1.06, y: 40, duration: 7.2, ease: "power1.inOut" }, 8.3);
+    tl.to("#world", { scale: 1.08, y: -20, duration: 7.5, ease: "power1.inOut" }, 15.5);
+    tl.to("#world", { scale: 1.09, y: -60, duration: 14.2, ease: "power1.inOut" }, 23.0);
+    tl.to("#world", { scale: 1.0, y: 0, duration: 2.8, ease: "power3.inOut" }, 37.2);
+    // мягкий проход света по открытке в финале
+    tl.set("#sweep", { x: 0 }, 39.58);
+    tl.to("#sweep", { x: 2000, duration: 3.4, ease: "power1.inOut" }, 39.6);
+
+    // Монограмма: блик фольги
+    const shine = (t) => tl.fromTo("#monoShine", { "--shine": "-30%" }, { "--shine": "130%", duration: 1.6, ease: "power1.inOut" }, t);
+    shine(8.6); shine(41.0);
+
+    // Появления: слово/буква проявляются из размытия, без сдвига
+    const blurIn = (els, t, each = 0.07, dur = 0.5) =>
+      tl.fromTo(els, { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: dur, stagger: each, ease: "power2.out" }, t);
+    const wipeIn = (sel, t, dur = 1.1) =>
+      tl.fromTo(sel, { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: dur, ease: "power2.inOut" }, t);
+
+    gsap.set([...wBless, ...lGroom, ...lBride, ...wInv1, ...wInv2, ...wVenue, ...wVenue2,
+      "#dLeft", "#dMid", "#dRight", "#tAnd", "#tHosts", "#orn1", "#orn2"], { opacity: 0 });
+    gsap.set(["#rTop", "#rBot"], { scaleX: 0 }); gsap.set(["#vL", "#vR"], { scaleY: 0 });
+
+    // 9.2 — имена
+    blurIn(wBless, 9.2, 0.09, 0.6);
+    blurIn(lGroom, 9.8, 0.06, 0.55);
+    tl.set("#tAnd", { opacity: 1 }, 10.55); wipeIn("#tAnd", 10.55, 1.0);
+    blurIn(lBride, 11.2, 0.06, 0.55);
+    // 16.2 — приглашение и дата
+    blurIn([...wInv1, ...wInv2], 16.3, 0.09, 0.55);
+    tl.to(["#rTop", "#rBot"], { scaleX: 1, duration: 1.0, ease: "power3.inOut" }, 17.4);
+    tl.to(["#vL", "#vR"], { scaleY: 1, duration: 0.6, ease: "power2.out" }, 18.0);
+    blurIn(["#dLeft", "#dMid", "#dRight"], 18.3, 0.18, 0.6);
+    // 23.8 — место
+    blurIn(wVenue, 23.8, 0.12, 0.6);
+    blurIn(wVenue2, 24.5, 0.09, 0.5);
+    blurIn("#orn1", 25.1, 0, 0.6);
+    // 30.2 — подпись
+    tl.set("#tHosts", { opacity: 1 }, 30.2); wipeIn("#tHosts", 30.2, 1.8);
+    blurIn("#orn2", 31.8, 0, 0.6);
+
+    tl.to({}, { duration: 47 }, 0);
+    window.__timelines = window.__timelines || {};
+    window.__timelines["main"] = tl;
+  });
+})();
+</script>
+</body>
+</html>

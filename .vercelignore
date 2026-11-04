@@ -1,0 +1,7 @@
+video
+_archive
+.claude
+*.md
+.env*
+.gitignore
+google-apps-script

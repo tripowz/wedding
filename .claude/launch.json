@@ -1,0 +1,31 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "invite",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "5500",
+        "--bind",
+        "127.0.0.1"
+      ],
+      "port": 5500
+    },
+    {
+      "name": "fotiha",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "5501",
+        "--bind",
+        "127.0.0.1",
+        "--directory",
+        "fotiha"
+      ],
+      "port": 5501
+    }
+  ]
+}

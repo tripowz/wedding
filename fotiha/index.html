@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Fotiha to‘yi · Bekzod & Ferangiz · 10.11.2026</title>
+  <meta name="description" content="Bekzod & Ferangiz — Fotiha to‘yi, 10 noyabr 2026, 12:00, Afrosiyob restorani, Kogon · Фотиха-туй, 10 ноября 2026, 12:00, ресторан Afrosiyob, Каган" />
+  <meta property="og:title" content="Fotiha to‘yi · Bekzod & Ferangiz · 10.11.2026" />
+  <meta property="og:description" content="Oq fotihangizni kutib qolamiz · Ждём вашего благословения" />
+  <meta name="theme-color" content="#f1dedc" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%236f6b45'/%3E%3Ctext x='32' y='42' font-family='serif' font-size='28' text-anchor='middle' fill='%23e3c486'%3EB%26amp;F%3C/text%3E%3C/svg%3E" />
+  <link rel="preload" href="assets/fonts/gv-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/fo-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="is-locked">
+  <!-- шёлк и ленты (WebGL) -->
+  <canvas id="silk" aria-hidden="true"></canvas>
+  <canvas id="ribBack" aria-hidden="true"></canvas>
+
+  <!-- верхняя панель -->
+  <div class="topbar">
+    <div class="lang" role="group" aria-label="Til / Язык">
+      <button type="button" data-lang="uz" aria-pressed="true">UZ</button>
+      <span class="lang__sep" aria-hidden="true"></span>
+      <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+    </div>
+    <button type="button" class="music" id="musicBtn" aria-pressed="false" hidden>
+      <span class="music__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="visually-hidden" data-i18n="music">Musiqa</span>
+    </button>
+  </div>
+
+  <!-- ========== КОНВЕРТ ========== -->
+  <div class="intro" id="intro">
+    <div class="curtain curtain--l" id="curL"><canvas></canvas></div>
+    <div class="curtain curtain--r" id="curR"><canvas></canvas></div>
+    <div class="intro__center" id="env">
+      <p class="intro__kicker caps" data-i18n="card.tagline">FOTIHA TO‘YI</p>
+      <button type="button" class="seal" id="seal" data-i18n-label="env.hint" aria-label="Muhrni bosing">
+        <canvas id="sealCv" width="360" height="360"></canvas>
+        <span class="seal__ring" aria-hidden="true"></span>
+      </button>
+      <p class="intro__address script" data-i18n="env.address">Aziz mehmonimizga</p>
+    </div>
+    <p class="intro__hint" id="hint" data-i18n="env.hint">Muhrni bosing</p>
+    <canvas id="ribFront" aria-hidden="true" hidden></canvas>
+    <canvas id="dust" aria-hidden="true"></canvas>
+  </div>
+
+  <!-- ветви оливы по краям (рисуются линией) -->
+  <svg class="bough bough--tl" id="boughTL" viewBox="0 0 260 260" aria-hidden="true"></svg>
+  <svg class="bough bough--br" id="boughBR" viewBox="0 0 260 260" aria-hidden="true"></svg>
+
+  <main id="main">
+    <!-- ========== ОТКРЫТКА ========== -->
+    <section class="hero" aria-label="Bekzod & Ferangiz">
+      <div class="hero__home" id="cardHome">
+        <canvas class="sprig sprig--r" id="sprigR" aria-hidden="true"></canvas>
+        <canvas class="sprig sprig--l" id="sprigL" aria-hidden="true"></canvas>
+        <article class="card" id="card">
+          <svg class="card__wreath" id="wreath" viewBox="0 0 300 300" aria-hidden="true"></svg>
+          <p class="card__tag caps rv" data-i18n="card.tagline">IKKI YURAK · BIR TAQDIR</p>
+          <h1 class="card__names">
+            <span class="card__name script bur rvs" id="nGroom">Bekzod</span>
+            <span class="card__amp script gold rvs">&amp;</span>
+            <span class="card__name script bur rvs" id="nBride">Ferangiz</span>
+          </h1>
+          <svg class="card__div rvc" viewBox="0 0 320 24" aria-hidden="true"><use href="#divA" /></svg>
+          <p class="card__invite caps rv"><span data-i18n="card.invite1">BU KUNNI SIZSIZ</span><br /><span data-i18n="card.invite2">TASAVVUR QILOLMAYMIZ</span></p>
+          <div class="card__date">
+            <p class="card__dcol caps cocoa rv" id="dWeek">CHORSHANBA</p>
+            <span class="card__vr rvv" aria-hidden="true"></span>
+            <p class="card__dmid">
+              <span class="caps gold rv" id="dMonth">NOYABR</span>
+              <span class="card__day caps bur rvc" id="dDay">11</span>
+              <span class="caps gold rv" id="dYear">2026</span>
+            </p>
+            <span class="card__vr rvv" aria-hidden="true"></span>
+            <p class="card__dcol rv"><span class="caps cocoa" data-i18n="card.time">SOAT</span><span class="card__time caps bur" id="dTime">18:00</span></p>
+          </div>
+          <svg class="card__orn card__orn--sm rvc" viewBox="0 0 300 72" aria-hidden="true"><use href="#sprigH" /></svg>
+          <p class="card__venue caps bur rv" id="cVenue">SOFINUR HALL</p>
+          <p class="card__kind ital cocoa rv" id="cKind">To‘yxonasi · Buxoro</p>
+          <p class="card__wait script rvs" data-i18n="card.wait">Sizni intiqlik bilan kutamiz!</p>
+          <p class="card__hosts script bur rvs" data-i18n="card.hosts">Sharipovlar oilasi</p>
+          <span class="card__sheen" aria-hidden="true"></span>
+        </article>
+      </div>
+      <a class="scroll-cue" href="#countdown"><span data-i18n="scroll">Davomini ko‘rish</span><i aria-hidden="true"></i></a>
+    </section>
+
+    <!-- ========== ТАЙМЕР ========== -->
+    <section class="sec" id="countdown">
+      <svg class="sep write" viewBox="0 0 300 72" aria-hidden="true"><use href="#sprigH" /></svg>
+      <h2 class="sec__title script bur write" data-i18n="count.title">Baxtli kungacha</h2>
+      <div class="count reveal" id="count">
+        <div class="count__cell"><span class="count__num" data-unit="d">00</span><span class="count__lbl caps" data-i18n="count.days">kun</span></div>
+        <div class="count__cell"><span class="count__num" data-unit="h">00</span><span class="count__lbl caps" data-i18n="count.hours">soat</span></div>
+        <div class="count__cell"><span class="count__num" data-unit="m">00</span><span class="count__lbl caps" data-i18n="count.minutes">daqiqa</span></div>
+        <div class="count__cell"><span class="count__num" data-unit="s">00</span><span class="count__lbl caps" data-i18n="count.seconds">soniya</span></div>
+      </div>
+      <p class="count__done script bur" id="countDone" hidden data-i18n="count.done">Bugun bizning to‘yimiz!</p>
+    </section>
+
+    <!-- ========== МЕСТО ========== -->
+    <section class="sec" id="venue">
+      <svg class="sep write" viewBox="0 0 300 72" aria-hidden="true"><use href="#sprigH" /></svg>
+      <p class="sec__kicker caps gold reveal" data-i18n="venue.kicker">Bizni qayerdan topasiz</p>
+      <h2 class="sec__title script bur write" data-i18n="venue.title">Manzil</h2>
+      <div class="panel venue reveal">
+        <p class="venue__name caps bur" id="vName">SOFINUR HALL</p>
+        <p class="venue__kind ital cocoa" id="vKind">To‘yxonasi · Buxoro</p>
+        <p class="venue__addr" id="vAddr"></p>
+        <div class="venue__map" id="vMap"><button type="button" class="venue__mapcover" id="mapCover"><span class="caps" data-i18n="venue.mapTap">Xaritani ochish</span></button></div>
+        <div class="venue__links">
+          <a class="btn btn--ghost" id="lnkYandex" target="_blank" rel="noopener">Yandex</a>
+          <a class="btn btn--ghost" id="lnk2gis" target="_blank" rel="noopener">2GIS</a>
+          <a class="btn btn--ghost" id="lnkGoogle" target="_blank" rel="noopener">Google</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== О ПОДАРКАХ ========== -->
+    <section class="sec" id="gifts">
+      <svg class="sep write" viewBox="0 0 300 72" aria-hidden="true"><use href="#sprigH" /></svg>
+      <p class="sec__kicker caps gold reveal" data-i18n="gifts.kicker">Kichik izoh</p>
+      <h2 class="sec__title script bur write" data-i18n="gifts.title">Sovg‘alar haqida</h2>
+      <div class="panel gifts reveal">
+        <svg class="gifts__icon" viewBox="0 0 32 32" fill="none" stroke="url(#gold)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="5" y="13" width="22" height="14" rx="1.5" /><path d="M3.5 9.5h25v3.5h-25zM16 9.5V27" /><path d="M16 9.5c-2-4.5-7.5-5-7.5-2s5 2 7.5 2Zm0 0c2-4.5 7.5-5 7.5-2s-5 2-7.5 2Z" />
+        </svg>
+        <p class="gifts__text" data-i18n="gifts.p1"></p>
+        <p class="gifts__text" data-i18n="gifts.p2"></p>
+      </div>
+    </section>
+
+    <!-- ========== ОТВЕТ ГОСТЯ ========== -->
+    <section class="sec" id="rsvp">
+      <svg class="sep write" viewBox="0 0 300 72" aria-hidden="true"><use href="#sprigH" /></svg>
+      <h2 class="sec__title script bur write" data-i18n="rsvp.title">Kelasizmi?</h2>
+      <p class="sec__sub reveal" id="rsvpSub"></p>
+      <form class="panel form reveal" id="form" novalidate>
+        <label class="field">
+          <span class="field__lbl caps" data-i18n="rsvp.name">Ismingiz va familiyangiz</span>
+          <input class="field__input" name="name" id="fName" autocomplete="name" maxlength="80" required data-i18n-ph="rsvp.namePh" />
+        </label>
+        <fieldset class="field">
+          <legend class="field__lbl caps" data-i18n="rsvp.attend">To‘yga kela olasizmi?</legend>
+          <div class="pills">
+            <label class="pill"><input type="radio" name="attending" value="yes" /><span data-i18n="rsvp.yes">Albatta kelaman</span></label>
+            <label class="pill"><input type="radio" name="attending" value="no" /><span data-i18n="rsvp.no">Afsuski, kela olmayman</span></label>
+          </div>
+        </fieldset>
+        <div class="form__more" id="formMore">
+          <div class="field">
+            <span class="field__lbl caps" id="guestsLbl" data-i18n="rsvp.guests">Necha kishi bo‘lasiz (siz bilan)</span>
+            <div class="stepper" role="group" aria-labelledby="guestsLbl">
+              <button type="button" class="stepper__btn" data-step="-1" aria-label="−">−</button>
+              <output class="stepper__val" id="guestsOut" aria-live="polite">1</output>
+              <button type="button" class="stepper__btn" data-step="1" aria-label="+">+</button>
+            </div>
+          </div>
+          <fieldset class="field">
+            <legend class="field__lbl caps" data-i18n="rsvp.side">Kim tomondan?</legend>
+            <div class="pills">
+              <label class="pill"><input type="radio" name="side" value="groom" /><span data-i18n="rsvp.groomSide">Kuyov tomondan</span></label>
+              <label class="pill"><input type="radio" name="side" value="bride" /><span data-i18n="rsvp.brideSide">Kelin tomondan</span></label>
+            </div>
+          </fieldset>
+        </div>
+        <label class="field">
+          <span class="field__lbl caps" data-i18n="rsvp.message">Yoshlarga tilagingiz</span>
+          <textarea class="field__input field__input--area" name="message" maxlength="600" rows="3" data-i18n-ph="rsvp.messagePh"></textarea>
+        </label>
+        <!-- ловушка для спам-ботов: люди это поле не видят -->
+        <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off" /></label>
+        <p class="form__err" id="formErr" role="alert"></p>
+        <button type="submit" class="btn btn--bur" id="sendBtn"><span data-i18n="rsvp.send">Javobni yuborish</span></button>
+      </form>
+      <div class="panel thanks" id="thanks" hidden>
+        <canvas class="thanks__seal" id="thanksSeal" width="360" height="360"></canvas>
+        <p class="thanks__title script bur" data-i18n="rsvp.thanks">Rahmat!</p>
+        <p class="thanks__text" id="thanksText"></p>
+        <button type="button" class="btn btn--ghost" id="againBtn" data-i18n="rsvp.again">Javobni o‘zgartirish</button>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <svg class="foot__orn" viewBox="0 0 300 72" aria-hidden="true"><use href="#sprigH" /></svg>
+      <p class="foot__wait script bur" data-i18n="footer.wait">Sizni intiqlik bilan kutamiz!</p>
+      <p class="foot__hosts caps cocoa" data-i18n="footer.hosts">Sharipovlar oilasi</p>
+      <p class="foot__mono script gold" id="footMono">B &amp; F</p>
+    </footer>
+  </main>
+
+  <canvas id="leaves" aria-hidden="true"></canvas>
+  <button type="button" class="swipe" id="swipe" aria-label="↓"><span data-i18n="scroll">Pastga suring</span><i class="swipe__chev" aria-hidden="true"></i></button>
+
+  <audio id="audio" preload="none"></audio>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0.35">
+        <stop offset="0" stop-color="#8a6330" /><stop offset="0.22" stop-color="#d4b06c" /><stop offset="0.38" stop-color="#f3e0aa" />
+        <stop offset="0.55" stop-color="#b48a48" /><stop offset="0.74" stop-color="#e6cb90" /><stop offset="1" stop-color="#94692f" />
+      </linearGradient>
+      <g id="ornA">
+        <path d="M150,14 C157,28 157,40 150,52 C143,40 143,28 150,14 Z" fill="url(#gold)" />
+        <circle cx="150" cy="6" r="2.2" fill="url(#gold)" /><circle cx="150" cy="61" r="2.6" fill="url(#gold)" />
+        <g id="ornHalf" fill="none" stroke="url(#gold)" stroke-linecap="round">
+          <path d="M156,44 C172,52 188,44 183,34 C179,26 167,28 170,36" stroke-width="1.7" />
+          <path d="M159,53 C190,64 222,44 253,48 C272,51 278,39 267,34 C258,31 251,40 259,44" stroke-width="1.6" />
+          <path d="M176,62 C200,71 232,67 250,59" stroke-width="1.1" />
+          <circle cx="214" cy="51" r="1.7" fill="url(#gold)" stroke="none" /><circle cx="284" cy="46" r="1.5" fill="url(#gold)" stroke="none" />
+        </g>
+        <use href="#ornHalf" transform="translate(300,0) scale(-1,1)" />
+      </g>
+      <g id="sprigH"></g>
+      <g id="divA">
+        <path d="M18,12 H138 M182,12 H302" stroke="url(#gold)" stroke-width="1.2" fill="none" />
+        <path d="M160,3 L167,12 L160,21 L153,12 Z" fill="url(#gold)" />
+        <circle cx="145" cy="12" r="1.9" fill="url(#gold)" /><circle cx="175" cy="12" r="1.9" fill="url(#gold)" />
+      </g>
+    </defs>
+  </svg>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/satin.js"></script>
+  <script src="js/bake.js"></script>
+  <script src="js/ribbons.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

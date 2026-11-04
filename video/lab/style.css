@@ -1,0 +1,95 @@
+  :root { --silk: #e9d9cc; --cocoa: #7a5a4c; --bur: #6a1a2a; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--silk); }
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--silk); }
+  #world, #fg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 0 0; }
+  #world > *, #fg > * { position: absolute; }
+  #silk { left: -160px; top: -160px; width: 1400px; height: 2240px; }
+  .rib { left: -100px; top: -100px; width: 1280px; height: 2120px; }
+  #ribBack { filter: drop-shadow(0 20px 24px rgba(80,35,30,.26)) drop-shadow(0 4px 6px rgba(80,35,30,.16)); }
+  #ribFront { filter: drop-shadow(0 26px 30px rgba(80,35,30,.30)) drop-shadow(0 5px 8px rgba(80,35,30,.18)); }
+
+  /* конверт: 880 × 1560, левый верхний угол (100, 260) */
+  .env { left: 100px; top: 260px; width: 880px; }
+  #envBack { height: 1560px; z-index: 1; filter: drop-shadow(0 28px 40px rgba(80,40,30,.28)) drop-shadow(0 6px 10px rgba(80,40,30,.16)); }
+  #flapWrap { height: 660px; z-index: 8; perspective: 2400px; perspective-origin: 440px 600px; }
+  #flap { position: absolute; inset: 0; transform-origin: 50% 0; transform-style: preserve-3d; }
+  .face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  #faceIn { transform: rotateX(180deg); }
+  #flapOut, #flapIn { position: absolute; left: 0; top: 0; width: 880px; height: 660px; }
+  #flapOut { filter: drop-shadow(0 10px 12px rgba(80,45,30,.26)); }
+  .fshade { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
+  #shadeOut { background: linear-gradient(180deg, rgba(70,40,30,0) 0%, rgba(70,40,30,.55) 100%);
+    clip-path: polygon(0 0, 100% 0, 54% 97%, 46% 97%); }
+  #shadeIn { background: linear-gradient(0deg, rgba(20,0,5,0) 0%, rgba(20,0,5,.6) 100%);
+    clip-path: polygon(0 100%, 100% 100%, 54% 3%, 46% 3%); }
+  #seal { position: absolute; left: 290px; top: 452px; width: 300px; height: 300px; }
+  #pocket { height: 1560px; z-index: 6; filter: drop-shadow(0 -3px 5px rgba(80,40,30,.20)); }
+
+  /* открытка: 780 × 1480, левый верхний угол (150, 310) → в финале (150, 170) */
+  #card { left: 150px; top: 310px; width: 780px; height: 1480px; z-index: 4; overflow: hidden;
+    border-radius: 390px 390px 16px 16px;
+    box-shadow: 0 34px 60px rgba(80,35,30,.24), 0 8px 16px rgba(80,35,30,.16); }
+  #cardPaper { position: absolute; left: 0; top: 0; width: 780px; height: 1480px; }
+  #frame { position: absolute; left: 0; top: 0; }
+  .draw { stroke-dasharray: 1 1; stroke-dashoffset: 1; }
+  #cardSheen { position: absolute; left: -400px; top: 0; width: 360px; height: 1480px; opacity: 0; mix-blend-mode: soft-light;
+    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,250,235,.85), rgba(255,255,255,0)); transform: skewX(-16deg); }
+
+  .ln { position: absolute; left: 0; width: 780px; text-align: center; white-space: nowrap; }
+  .col { position: absolute; text-align: center; white-space: nowrap; }
+  .caps { font-family: "Forum", serif; font-weight: 400; }
+  .script { font-family: "Great Vibes", cursive; font-weight: 400; }
+  .ital { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 500; }
+  .cocoa { color: var(--cocoa); }
+  .cocoaS { color: #84464f; }
+  .burT { color: #6e2232; }
+  .bur { background-image: linear-gradient(180deg, #93394a 0%, #6c1b2b 52%, #4d0e1b 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .gold { background-image: linear-gradient(100deg, #8a6330 0%, #c9a25e 18%, #f3e0aa 30%, #b48a48 44%, #e6cb90 58%, #9b7136 74%, #d8b878 88%, #8f672f 100%);
+    background-size: 260% 100%; background-position: var(--g, 35%) 0; -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  /* проявления: маска слева направо (rv — мягко, rvs — «письмо»), из центра (rvc) */
+  .rv { -webkit-mask-image: linear-gradient(90deg, #000 74%, transparent 100%); mask-image: linear-gradient(90deg, #000 74%, transparent 100%);
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: 0 0; mask-position: 0 0;
+    -webkit-mask-size: calc(var(--p, 0) * 136%) 100%; mask-size: calc(var(--p, 0) * 136%) 100%; }
+  .rvs { -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent 100%); mask-image: linear-gradient(90deg, #000 88%, transparent 100%);
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: 0 0; mask-position: 0 0;
+    -webkit-mask-size: calc(var(--p, 0) * 114%) 100%; mask-size: calc(var(--p, 0) * 114%) 100%; }
+  .rvc { -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 82%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: 50% 0; mask-position: 50% 0;
+    -webkit-mask-size: calc(var(--p, 0) * 140%) 100%; mask-size: calc(var(--p, 0) * 140%) 100%; }
+
+  /* раскладка текста (координаты внутри открытки) */
+  #orn1 { position: absolute; left: 240px; top: 64px; }
+  #tBless { top: 186px; font-size: 25px; line-height: 34px; letter-spacing: .22em; padding-left: .22em; }
+  #tGroom { top: 238px; height: 180px; font-size: 148px; line-height: 180px; }
+  #tAmp { top: 372px; height: 110px; font-size: 84px; line-height: 110px; }
+  #tBride { top: 446px; height: 180px; font-size: 148px; line-height: 180px; }
+  #div1 { position: absolute; left: 230px; top: 640px; }
+  #tInv1 { top: 690px; font-size: 29px; line-height: 38px; letter-spacing: .16em; padding-left: .16em; }
+  #tInv2 { top: 732px; font-size: 29px; line-height: 38px; letter-spacing: .16em; padding-left: .16em; }
+  .vr { position: absolute; top: 826px; width: 1.4px; height: 168px; transform-origin: 50% 50%;
+    background: linear-gradient(180deg, rgba(180,138,72,0), #c9a25e 18%, #e9d09a 50%, #b48a48 82%, rgba(180,138,72,0)); }
+  #vL { left: 290px; } #vR { left: 489px; }
+  #dLeft { left: 40px; width: 250px; top: 893px; font-size: 23px; line-height: 30px; letter-spacing: .12em; padding-left: .12em; }
+  #dMonth { left: 290px; width: 200px; top: 824px; font-size: 27px; line-height: 34px; letter-spacing: .2em; padding-left: .2em; }
+  #dDay { left: 290px; width: 200px; top: 852px; height: 118px; font-size: 112px; line-height: 118px; }
+  #dYear { left: 290px; width: 200px; top: 966px; font-size: 27px; line-height: 34px; letter-spacing: .2em; padding-left: .2em; }
+  #dT1 { left: 490px; width: 250px; top: 868px; font-size: 23px; line-height: 30px; letter-spacing: .14em; padding-left: .14em; }
+  #dT2 { left: 490px; width: 250px; top: 898px; font-size: 42px; line-height: 50px; letter-spacing: .04em; }
+  #orn2 { position: absolute; left: 270px; top: 1030px; }
+  #tVenue { top: 1096px; font-size: 46px; line-height: 58px; letter-spacing: .12em; padding-left: .12em; }
+  #tVenue2 { top: 1156px; font-size: 34px; line-height: 44px; }
+  #tHosts1 { top: 1214px; height: 76px; font-size: 50px; line-height: 76px; }
+  #tHosts2 { top: 1268px; height: 96px; font-size: 68px; line-height: 96px; }
+
+  .sprig { z-index: 9; }
+  #sprigL { left: -40px; top: 1040px; width: 330px; height: 460px; transform-origin: 40px 420px; }
+  #sprigR { left: 790px; top: 330px; width: 330px; height: 470px; transform-origin: 290px 40px; }
+
+  #dust { left: 0; top: 0; width: 1080px; height: 1920px; }
+  #sweep { position: absolute; left: -900px; top: -200px; width: 700px; height: 2400px; pointer-events: none; mix-blend-mode: soft-light; opacity: .9;
+    background: linear-gradient(90deg, rgba(255,250,240,0), rgba(255,248,236,.55) 50%, rgba(255,250,240,0)); transform: rotate(18deg); }
+  #vignette { position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse 85% 75% at 50% 46%, rgba(0,0,0,0) 55%, rgba(70,35,30,.22) 100%); }
+  #grain { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; opacity: .05; mix-blend-mode: overlay; pointer-events: none; }

@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script src="assets/engine.js"></script>
+<style>
+@font-face { font-family: 'Cormorant Garamond'; font-weight: 300 700; font-style: normal; src: url('assets/fonts/cg.woff2') format('woff2'); }
+@font-face { font-family: 'Cormorant Garamond'; font-weight: 300 700; font-style: italic; src: url('assets/fonts/cgi.woff2') format('woff2'); }
+@font-face { font-family: 'Manrope'; font-weight: 200 800; src: url('assets/fonts/mr.woff2') format('woff2'); }
+html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #ece4d3; }
+#root { position: relative; width: 100%; height: 100%; }
+#stage { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="8" data-width="1080" data-height="1920">
+  <canvas id="stage" width="1080" height="1920"></canvas>
+</div>
+<script>
+(() => {
+  const LIN = "#ebe3d1", DEEP = "#5f5a39", KHAKI = "#8a8458", SAND = "#c8b98d", CREAM = "#f3ead6";
+  const CG = (w, s, it) => `${it ? "italic " : ""}${w} ${s}px "Cormorant Garamond"`;
+  const MR = (w, s) => `${w} ${s}px "Manrope"`;
+  const TAU = Math.PI * 2;
+
+  // Лён: полотняное переплетение в карте высот
+  function linen(u) {
+    u.a.fillStyle = LIN; u.a.fillRect(0, 0, 1080, 1920);
+    u.k.fillStyle = u.gray(60 / 255); u.k.fillRect(0, 0, 1080, 1920);
+    const img = u.h.createImageData(1080, 1920), d = img.data, P = 7;
+    for (let y = 0; y < 1920; y++) for (let x = 0; x < 1080; x++) {
+      const cx = Math.floor(x / P), cy = Math.floor(y / P);
+      const fx = (x % P) / P, fy = (y % P) / P;
+      const warpOver = (cx + cy) % 2 === 0;
+      const warp = Math.sin(fx * Math.PI), weft = Math.sin(fy * Math.PI);
+      const v = 0.04 + 0.035 * (warpOver ? warp : weft) + ((x * 7 + y * 13) % 17) / 17 * 0.006;
+      const c = Math.round(v * 255), i = (y * 1080 + x) * 4;
+      d[i] = d[i + 1] = d[i + 2] = c; d[i + 3] = 255;
+    }
+    u.h.putImageData(img, 0, 0);
+  }
+
+  // Узелки (французский узел): маленькие купола
+  function knot(u, x, y, r, color) {
+    const g = u.h.createRadialGradient(x, y, 0, x, y, r);
+    g.addColorStop(0, u.gray(0.3)); g.addColorStop(1, u.gray(0.12));
+    u.h.beginPath(); u.h.arc(x, y, r, 0, TAU); u.h.fillStyle = g; u.h.fill();
+    u.a.beginPath(); u.a.arc(x, y, r, 0, TAU); u.a.fillStyle = color; u.a.fill();
+    u.k.beginPath(); u.k.arc(x, y, r, 0, TAU); u.k.fillStyle = u.gray(230 / 255); u.k.fill();
+  }
+  const S = (u, draw, angle, color, opt = {}) => u.satin(draw, { angle, color, base: opt.base ?? 0.12, top: opt.top ?? 0.32, spacing: opt.spacing ?? 3.4, width: opt.width ?? 2.8 });
+  const txt = (str, x, y, font) => (c) => { c.font = font; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText(str, x, y); };
+  const petal = (x, y, a, L, Wd) => (c) => {
+    c.save(); c.translate(x, y); c.rotate(a);
+    c.beginPath(); c.moveTo(0, 0);
+    c.bezierCurveTo(L * 0.3, -Wd, L * 0.75, -Wd * 0.8, L, 0);
+    c.bezierCurveTo(L * 0.75, Wd * 0.8, L * 0.3, Wd, 0, 0);
+    c.fill(); c.restore();
+  };
+  // Тамбурный шов по кривой: цепочка петель
+  function chain(u, pts, color, size = 9) {
+    for (let i = 0; i < pts.length - 1; i++) {
+      const [x0, y0] = pts[i], [x1, y1] = pts[i + 1];
+      const L = Math.hypot(x1 - x0, y1 - y0), n = Math.max(1, Math.floor(L / (size * 1.6)));
+      for (let k = 0; k < n; k++) {
+        const t = (k + 0.5) / n, x = x0 + (x1 - x0) * t, y = y0 + (y1 - y0) * t, a = Math.atan2(y1 - y0, x1 - x0);
+        u.satin((c) => { c.save(); c.translate(x, y); c.rotate(a); c.beginPath(); c.ellipse(0, 0, size, size * 0.45, 0, 0, TAU); c.fill(); c.restore(); },
+          { angle: a, color, base: 0.11, top: 0.24, spacing: 2.6, width: 2.2 });
+      }
+    }
+  }
+  // Розетка сюзане: зубчатый край, кольца, миндалевидные лепестки, звезда в центре
+  const ring = (x, y, r0, r1) => (c) => { c.beginPath(); c.arc(x, y, r1, 0, TAU); c.arc(x, y, r0, 0, TAU, true); c.fill("evenodd"); };
+  const zig = (x, y, r0, r1, n) => (c) => {
+    c.beginPath();
+    for (let i = 0; i <= n * 2; i++) { const a = (i / (n * 2)) * TAU, r = i % 2 ? r1 : r0 + (r1 - r0) * 0.35; c[i ? "lineTo" : "moveTo"](x + Math.cos(a) * r, y + Math.sin(a) * r); }
+    c.arc(x, y, r0, TAU, 0, true); c.fill("evenodd");
+  };
+  const starM = (x, y, n, R, r, rot) => (c) => { c.beginPath();
+    for (let i = 0; i < n * 2; i++) { const a = rot + (Math.PI / n) * i, rr = i % 2 ? r : R; c[i ? "lineTo" : "moveTo"](x + Math.cos(a) * rr, y + Math.sin(a) * rr); }
+    c.closePath(); c.fill(); };
+  function medallion(u, x, y, R, inner) {
+    S(u, zig(x, y, R * 0.86, R, 28), 0.35, KHAKI, { base: 0.1, top: 0.24 });
+    S(u, ring(x, y, R * 0.74, R * 0.86), 1.25, SAND, { base: 0.11, top: 0.22 });
+    for (let i = 0; i < 40; i++) { const a = (i / 40) * TAU; knot(u, x + Math.cos(a) * R * 0.8, y + Math.sin(a) * R * 0.8, Math.max(2.5, R * 0.022), CREAM); }
+    for (let i = 0; i < 12; i++) {
+      const a = (i / 12) * TAU + Math.PI / 12;
+      S(u, petal(x + Math.cos(a) * R * 0.5, y + Math.sin(a) * R * 0.5, a, R * 0.23, R * 0.075), a, i % 2 ? KHAKI : DEEP, { base: 0.12, top: 0.28 });
+    }
+    S(u, ring(x, y, R * 0.47, R * 0.5), 0.2, KHAKI, { base: 0.11, top: 0.2, spacing: 2.6, width: 2 });
+    S(u, (c) => { c.beginPath(); c.arc(x, y, R * 0.46, 0, TAU); c.fill(); }, 1.0, DEEP, { base: 0.14, top: 0.3 });
+    if (inner) inner();
+    else S(u, starM(x, y, 8, R * 0.3, R * 0.17, -Math.PI / 2 + Math.PI / 8), -0.6, CREAM, { base: 0.18, top: 0.38, spacing: 2.8, width: 2.3 });
+  }
+  // Гранатовая ветвь: стебель тамбуром и миндалевидные листья парами
+  function branch(u, x, y, dir, len) {
+    const pts = []; for (let t = 0; t <= 1.0001; t += 0.1) pts.push([x + dir * Math.sin(t * 2.2) * 40, y + t * len]);
+    chain(u, pts, KHAKI, 7);
+    for (let k = 1; k <= 4; k++) {
+      const [px, py] = pts[k * 2];
+      [-1, 1].forEach((s) => S(u, petal(px, py, Math.PI / 2 + s * 1.0, 64, 18), s * 0.8, k % 2 ? DEEP : KHAKI));
+    }
+  }
+
+  const shots = [
+    /* C1 — медальон «B & F», игла с нитью */
+    { depth: 46, az: 228, el: 36, amb: 0.56, key: 0.85, draw(u) {
+      linen(u);
+      medallion(u, 540, 880, 420, () => {
+        S(u, txt("B&F", 540, 880, CG(600, 150)), -0.6, CREAM, { base: 0.18, top: 0.42, spacing: 2.8, width: 2.3 });
+      });
+      branch(u, 540, 1330, 1, 300);
+      // игла с нитью
+      u.stroke((c) => { c.beginPath(); c.moveTo(630, 1590); c.bezierCurveTo(820, 1540, 900, 1380, 870, 1240); }, { hv: 0.2, alb: KHAKI, mat: 230, width: 6 });
+      u.fill((c) => { c.save(); c.translate(760, 1650); c.rotate(-0.9); c.beginPath(); c.ellipse(0, 0, 230, 7, 0, 0, TAU); c.restore(); }, { hv: 0.32, alb: "#a8a8a2", mat: 250 });
+      u.fill((c) => { c.save(); c.translate(760 - Math.cos(0.9) * 200, 1650 + Math.sin(0.9) * 200); c.rotate(-0.9); c.beginPath(); c.ellipse(0, 0, 14, 3, 0, 0, TAU); c.restore(); }, { hv: 0.1 });
+      S(u, txt("Siz uchun maxsus", 540, 300, CG(500, 66, true)), 0.9, KHAKI, { spacing: 2.6, width: 2.1 });
+    } },
+    /* C2 — имена */
+    { depth: 46, az: 225, el: 38, amb: 0.57, key: 0.84, draw(u) {
+      linen(u);
+      // рамка тамбурным швом
+      const fr = [[150, 260], [930, 260], [930, 1660], [150, 1660], [150, 260]];
+      chain(u, fr, KHAKI, 9);
+      [[150, 260], [930, 260], [930, 1660], [150, 1660]].forEach(([x, y]) => medallion(u, x, y, 56));
+      S(u, txt("Bekzod", 540, 720, CG(600, 170)), 1.05, DEEP, { spacing: 3, width: 2.5 });
+      S(u, txt("&", 540, 960, CG(500, 150, true)), -0.5, KHAKI, { spacing: 3, width: 2.5 });
+      S(u, txt("Ferangiz", 540, 1200, CG(600, 170)), 1.05, DEEP, { spacing: 3, width: 2.5 });
+      for (let i = 0; i < 9; i++) knot(u, 360 + i * 45, 1420, 7, i % 2 ? SAND : KHAKI);
+    } },
+    /* C3 — дата */
+    { depth: 46, az: 222, el: 38, amb: 0.58, key: 0.84, draw(u) {
+      linen(u);
+      medallion(u, 540, 820, 480, () => {
+        S(u, txt("11", 540, 828, MR(300, 250)), -0.7, CREAM, { base: 0.18, top: 0.44, spacing: 3, width: 2.5 });
+      });
+      S(u, txt("NOYABR 2026", 540, 1430, MR(700, 64)), 0.0, DEEP, { spacing: 2.4, width: 1.9 });
+      S(u, txt("Chorshanba · soat 18:00", 540, 1560, CG(700, 72)), 1.2, KHAKI, { spacing: 2.4, width: 1.9 });
+    } },
+    /* C4 — всё полотно: место и подпись */
+    { depth: 40, az: 225, el: 40, amb: 0.6, key: 0.82, draw(u) {
+      linen(u);
+      [[160, 180], [920, 180], [160, 1740], [920, 1740]].forEach(([x, y], i) => medallion(u, x, y, 110));
+      [[540, 180], [540, 1740]].forEach(([x, y]) => medallion(u, x, y, 80));
+      chain(u, [[100, 340], [980, 340]], KHAKI, 8);
+      chain(u, [[100, 1580], [980, 1580]], KHAKI, 8);
+      S(u, txt("Sofinur Hall", 540, 560, CG(700, 120)), 1.05, DEEP, { spacing: 2.8, width: 2.3 });
+      S(u, txt("to‘yxonasi · Buxoro", 540, 690, CG(700, 64)), 1.1, KHAKI, { spacing: 2.4, width: 1.9 });
+      for (let i = 0; i < 5; i++) knot(u, 450 + i * 45, 820, 8, i % 2 ? SAND : DEEP);
+      S(u, txt("Hurmat bilan,", 540, 960, CG(700, 66, true)), 1.1, KHAKI, { spacing: 2.4, width: 1.9 });
+      S(u, txt("Sharipovlar oilasi", 540, 1050, CG(700, 74)), 1.1, DEEP, { spacing: 2.4, width: 1.9 });
+      S(u, txt("Sizni kutib qolamiz", 540, 1300, CG(700, 92)), 1.05, DEEP, { spacing: 2.6, width: 2.1 });
+    } },
+  ];
+
+  const canvas = document.getElementById("stage");
+  Promise.all([
+    document.fonts.load('600 170px "Cormorant Garamond"', "BbАа"),
+    document.fonts.load('italic 500 66px "Cormorant Garamond"', "Ss"),
+    document.fonts.load('300 380px "Manrope"', "11"),
+    document.fonts.load('700 64px "Manrope"', "NOYABR"),
+  ]).then(() => {
+    const renderAt = window.ReliefStills({ canvas, shots, slot: 2 });
+    const tl = gsap.timeline({ paused: true, onUpdate: () => renderAt(tl.time()) });
+    tl.to({}, { duration: 8 }, 0);
+    window.addEventListener("hf-seek", (e) => renderAt(e.detail.time));
+    renderAt(0);
+    window.__timelines = window.__timelines || {};
+    window.__timelines["main"] = tl;
+  });
+})();
+</script>
+</body>
+</html>
