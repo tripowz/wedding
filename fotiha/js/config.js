@@ -83,7 +83,7 @@ window.WEDDING = {
   ],
 
   music: "assets/music.mp3",
-  musicStart: 8.5, // секунда песни: прямо перед словами «Over and over»
+  musicStart: 26, // Shahzoda — «Kuyov va kelinchak», с 26-й секунды
 
   // Адрес веб-приложения Google Apps Script (см. README.md, шаг 3).
   // Пока пусто — форма работает в тестовом режиме и ничего не отправляет.
