@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Гости · Bekzod & Ferangiz</title>
+  <meta name="theme-color" content="#f1e6dc" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%236c1b2b'/%3E%3Ctext x='32' y='42' font-family='serif' font-size='28' text-anchor='middle' fill='%23e3c486'%3EB%26amp;F%3C/text%3E%3C/svg%3E" />
+  <link rel="preload" href="assets/fonts/gv-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/app.css" />
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <header class="head">
+    <p class="head__kicker caps">Ответы гостей</p>
+    <h1 class="head__names script">Bekzod <span class="gold">&amp;</span> Ferangiz</h1>
+    <svg class="head__div" viewBox="0 0 320 24" aria-hidden="true">
+      <path d="M18,12 H138 M182,12 H302" stroke="url(#gold)" stroke-width="1.2" fill="none" />
+      <path d="M160,3 L167,12 L160,21 L153,12 Z" fill="url(#gold)" />
+      <circle cx="145" cy="12" r="1.9" fill="url(#gold)" /><circle cx="175" cy="12" r="1.9" fill="url(#gold)" />
+    </svg>
+  </header>
+
+  <!-- событие -->
+  <div class="seg" role="tablist" aria-label="Событие" id="eventSeg">
+    <button type="button" role="tab" data-event="fotiha" aria-selected="true">
+      <span class="seg__title">Фотиха</span><span class="seg__date">10 ноября · 12:00</span>
+    </button>
+    <button type="button" role="tab" data-event="wedding" aria-selected="false">
+      <span class="seg__title">Свадебный вечер</span><span class="seg__date">11 ноября · 18:00</span>
+    </button>
+    <span class="seg__thumb" aria-hidden="true"></span>
+  </div>
+
+  <main id="app">
+    <!-- итоги -->
+    <section class="stats" aria-live="polite">
+      <div class="hero-stat card">
+        <p class="hero-stat__lbl caps">Придут</p>
+        <p class="hero-stat__num"><span id="sPeople">—</span></p>
+        <p class="hero-stat__sub" id="sPeopleSub">гостей</p>
+        <div class="sides" id="sides">
+          <div class="sides__bar"><i class="sides__g" id="barG"></i><i class="sides__b" id="barB"></i></div>
+          <div class="sides__legend">
+            <span><b class="dot dot--g"></b>Жених · <em id="sGroom">0</em></span>
+            <span><b class="dot dot--b"></b>Невеста · <em id="sBride">0</em></span>
+          </div>
+        </div>
+      </div>
+      <div class="mini card"><p class="mini__num" id="sAnswers">—</p><p class="mini__lbl caps">ответили</p></div>
+      <div class="mini card"><p class="mini__num mini__num--yes" id="sComing">—</p><p class="mini__lbl caps">семей придут</p></div>
+      <div class="mini card"><p class="mini__num mini__num--no" id="sDeclined">—</p><p class="mini__lbl caps">не смогут</p></div>
+    </section>
+
+    <!-- вкладки -->
+    <div class="tabs" role="tablist" aria-label="Раздел">
+      <button type="button" role="tab" data-tab="guests" aria-selected="true">Гости <span class="tabs__n" id="nGuests"></span></button>
+      <button type="button" role="tab" data-tab="wishes" aria-selected="false">Пожелания <span class="tabs__n" id="nWishes"></span></button>
+      <button type="button" class="refresh" id="refresh" aria-label="Обновить">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66" /><path d="M20 4v5h-5" /></svg>
+      </button>
+    </div>
+
+    <section id="tabGuests">
+      <div class="tools">
+        <label class="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" /><path d="M16 16l4.5 4.5" /></svg>
+          <input type="search" id="q" placeholder="Поиск по имени" autocomplete="off" enterkeyhint="search" />
+        </label>
+        <div class="chips" id="chips" role="group" aria-label="Фильтр">
+          <button type="button" class="chip" data-f="all" aria-pressed="true">Все</button>
+          <button type="button" class="chip" data-f="yes" aria-pressed="false">Придут</button>
+          <button type="button" class="chip" data-f="no" aria-pressed="false">Не смогут</button>
+          <button type="button" class="chip" data-f="groom" aria-pressed="false">Жених</button>
+          <button type="button" class="chip" data-f="bride" aria-pressed="false">Невеста</button>
+        </div>
+      </div>
+      <ul class="list" id="list"></ul>
+    </section>
+
+    <section id="tabWishes" hidden>
+      <ul class="wishes" id="wishes"></ul>
+    </section>
+
+    <p class="foot" id="foot"></p>
+  </main>
+
+  <!-- состояния: загрузка, нет доступа, ошибка -->
+  <div class="state" id="state" hidden>
+    <div class="state__seal" aria-hidden="true">B<span>&amp;</span>F</div>
+    <p class="state__title script" id="stateTitle"></p>
+    <p class="state__text" id="stateText"></p>
+    <button type="button" class="btn" id="stateBtn" hidden></button>
+  </div>
+
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0.35">
+        <stop offset="0" stop-color="#8a6330" /><stop offset="0.22" stop-color="#d4b06c" /><stop offset="0.38" stop-color="#f3e0aa" />
+        <stop offset="0.55" stop-color="#b48a48" /><stop offset="0.74" stop-color="#e6cb90" /><stop offset="1" stop-color="#94692f" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
